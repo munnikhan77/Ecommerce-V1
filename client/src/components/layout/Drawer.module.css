@@ -1,0 +1,74 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.open {
+  pointer-events: auto;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(43, 34, 32, 0.35);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+}
+
+.open .backdrop {
+  opacity: 1;
+}
+
+.panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(440px, 100%);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--ink);
+  transition: transform 0.6s var(--ease);
+}
+
+.right {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.left {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.open .panel {
+  transform: none;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.head h3 {
+  font-size: 26px;
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 24px 24px;
+}
+
+.foot {
+  padding: 20px 24px 28px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}

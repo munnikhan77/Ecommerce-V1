@@ -1,0 +1,52 @@
+.panel {
+  background: #fff;
+  border: 1px solid #ece4de;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.head h2 {
+  font-size: 26px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: #eee;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pending {
+  background: #fbefd9;
+  color: #8a6420;
+}
+.confirmed {
+  background: #e4ecf6;
+  color: #3d5b80;
+}
+.shipped {
+  background: #ece5f5;
+  color: #5d4685;
+}
+.delivered {
+  background: #e3efe1;
+  color: #44693f;
+}
+.cancelled {
+  background: #f6e1de;
+  color: var(--danger);
+}

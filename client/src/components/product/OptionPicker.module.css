@@ -1,0 +1,64 @@
+.picker {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.picker legend {
+  padding: 0;
+  margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.picker legend span {
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: var(--ink-soft);
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  min-width: 56px;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  font-size: 13px;
+  transition: border-color 0.3s, background 0.3s, color 0.3s;
+}
+
+.chip:hover {
+  border-color: var(--ink);
+}
+
+.chip.selected {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--surface);
+}
+
+.swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--swatch);
+  box-shadow:
+    0 0 0 3px var(--bg),
+    0 0 0 4px var(--line);
+  transition: box-shadow 0.3s;
+}
+
+.swatch.selected,
+.swatch:hover {
+  box-shadow:
+    0 0 0 3px var(--bg),
+    0 0 0 4px var(--ink);
+}

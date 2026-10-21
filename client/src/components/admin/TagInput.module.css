@@ -1,0 +1,40 @@
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px;
+  min-height: 50px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px 4px 12px;
+  border-radius: 99px;
+  background: var(--bg-soft);
+  font-size: 13px;
+}
+
+.tag button {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.tag button:hover {
+  background: var(--line);
+}
+
+.box input {
+  flex: 1;
+  min-width: 140px;
+  border: 0;
+  background: transparent;
+  outline: none;
+  padding: 4px 6px;
+}

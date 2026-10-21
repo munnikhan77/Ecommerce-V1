@@ -1,0 +1,33 @@
+.picker {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  height: 50px;
+}
+
+.picker button {
+  width: 44px;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--ink-soft);
+}
+
+.picker button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.picker span {
+  min-width: 28px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.small {
+  height: 34px;
+}
+
+.small button {
+  width: 32px;
+}

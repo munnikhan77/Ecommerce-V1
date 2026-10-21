@@ -1,0 +1,17 @@
+.cta {
+  padding: clamp(80px, 12vw, 160px) 0;
+  text-align: center;
+  background:
+    radial-gradient(50% 80% at 50% 0%, var(--blush) 0%, transparent 70%),
+    var(--bg);
+}
+
+.cta h2 {
+  margin: 20px auto 40px;
+  max-width: 900px;
+  font-size: clamp(36px, 5.4vw, 72px);
+}
+
+.cta em {
+  color: var(--accent);
+}

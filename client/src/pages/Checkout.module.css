@@ -1,0 +1,87 @@
+.page {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(32px, 6vw, 96px);
+  padding-top: 56px;
+  padding-bottom: 120px;
+  align-items: start;
+}
+
+.form {
+  display: grid;
+  gap: 40px;
+}
+
+.form h1 {
+  font-size: clamp(44px, 6vw, 72px);
+}
+
+.form section {
+  display: grid;
+  gap: 16px;
+}
+
+.form h2,
+.summary h2 {
+  font-size: 28px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.payments {
+  display: grid;
+  gap: 10px;
+}
+
+.error {
+  padding: 14px 18px;
+  background: #f6e1de;
+  color: var(--danger);
+  font-size: 14px;
+}
+
+.summary {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+  padding: 32px;
+  background: var(--surface);
+}
+
+.totals {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  margin: 24px 0 0;
+  font-size: 14px;
+}
+
+.totals dd {
+  margin: 0;
+  text-align: right;
+}
+
+.total {
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 18px;
+}
+
+@media (max-width: 860px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+  .summary {
+    position: static;
+    order: -1;
+    padding: 24px;
+  }
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

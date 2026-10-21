@@ -1,0 +1,25 @@
+.bar {
+  background: var(--ink);
+  color: #efe2da;
+  overflow: hidden;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.track {
+  display: flex;
+  gap: 80px;
+  white-space: nowrap;
+  animation: marquee 45s linear infinite;
+  padding-left: 80px;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}

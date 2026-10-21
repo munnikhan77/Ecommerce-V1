@@ -1,0 +1,48 @@
+.gallery {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 16px;
+  align-items: start;
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+}
+
+.gallery:has(> .main:only-child) {
+  grid-template-columns: 1fr;
+}
+
+.thumbs {
+  display: grid;
+  gap: 10px;
+}
+
+.thumbs button {
+  opacity: 0.55;
+  transition: opacity 0.3s;
+}
+
+.thumbs .activeThumb,
+.thumbs button:hover {
+  opacity: 1;
+}
+
+.main {
+  animation: fade 0.6s var(--ease);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+}
+
+@media (max-width: 860px) {
+  .gallery {
+    position: static;
+    grid-template-columns: 1fr;
+  }
+  .thumbs {
+    order: 2;
+    grid-template-columns: repeat(5, 64px);
+  }
+}

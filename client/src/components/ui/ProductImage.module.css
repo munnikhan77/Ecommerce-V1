@@ -1,0 +1,50 @@
+.frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.4s var(--ease);
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(120% 80% at 20% 10%, color-mix(in srgb, var(--tone) 35%, #fff) 0%, transparent 60%),
+    radial-gradient(90% 70% at 85% 95%, color-mix(in srgb, var(--tone) 80%, #000 12%) 0%, transparent 70%),
+    linear-gradient(160deg, color-mix(in srgb, var(--tone) 70%, #fff), var(--tone));
+}
+
+/* diagonal "silk" highlight */
+.sheen {
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.35) 45%,
+    rgba(255, 255, 255, 0.05) 52%,
+    transparent 60%
+  );
+  transform: translateX(-10%);
+}
+
+.label {
+  position: relative;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(22px, 3vw, 34px);
+  color: rgba(255, 255, 255, 0.92);
+  text-align: center;
+  padding: 0 12%;
+  line-height: 1.1;
+  text-shadow: 0 1px 14px rgba(60, 35, 28, 0.35);
+}

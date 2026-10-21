@@ -1,0 +1,63 @@
+.loader {
+  display: grid;
+  place-items: center;
+  padding: 96px 0;
+}
+
+.moon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  box-shadow: inset -7px 3px 0 0 var(--accent);
+  animation: spin 1.4s var(--ease) infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.skeletonCard {
+  display: grid;
+  gap: 10px;
+}
+
+.skeletonImg,
+.skeletonLine {
+  background: linear-gradient(90deg, var(--bg-soft), #f3ebe4, var(--bg-soft));
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+.skeletonImg {
+  aspect-ratio: 3 / 4;
+}
+
+.skeletonLine {
+  height: 12px;
+  width: 70%;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.empty {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 80px 16px;
+  text-align: center;
+}
+
+.empty h3 {
+  font-size: 32px;
+}
+
+.empty p {
+  color: var(--ink-soft);
+  max-width: 380px;
+}

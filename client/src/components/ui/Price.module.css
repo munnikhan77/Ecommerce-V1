@@ -1,0 +1,20 @@
+.price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.large {
+  font-size: 20px;
+}
+
+.sale {
+  color: var(--accent-deep);
+}
+
+.compare {
+  color: var(--ink-faint);
+  font-size: 0.85em;
+}
