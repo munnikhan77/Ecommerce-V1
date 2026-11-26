@@ -1,0 +1,1584 @@
+{
+  "categories": [
+    {
+      "id": "cat-night",
+      "name": "Night Dresses",
+      "slug": "night-dresses",
+      "tagline": "Slip into softness",
+      "tone": "#d9b8ad",
+      "sortOrder": 1,
+      "image": "",
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T17:42:58.480Z",
+      "cutout": "/uploads/cutout-night.png",
+      "gender": "women"
+    },
+    {
+      "id": "cat-pajama",
+      "name": "Pajama Sets",
+      "slug": "pajama-sets",
+      "tagline": "Lazy mornings, sorted",
+      "tone": "#c9c2b4",
+      "sortOrder": 2,
+      "image": "",
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T17:42:58.481Z",
+      "cutout": "/uploads/cutout-pajama.png",
+      "gender": "women"
+    },
+    {
+      "id": "cat-robe",
+      "name": "Robes",
+      "slug": "robes",
+      "tagline": "Wrapped in calm",
+      "tone": "#b9a59a",
+      "sortOrder": 3,
+      "image": "",
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T17:42:58.485Z",
+      "cutout": "/uploads/cutout-robe.png",
+      "gender": "women"
+    },
+    {
+      "id": "cat-bra",
+      "name": "Bras & Bralettes",
+      "slug": "bras",
+      "tagline": "Everyday comfort",
+      "tone": "#e2c6c0",
+      "sortOrder": 4,
+      "image": "",
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T17:42:58.486Z",
+      "cutout": "/uploads/cutout-bra.png",
+      "gender": "women"
+    },
+    {
+      "id": "cat-panty",
+      "name": "Panties",
+      "slug": "panties",
+      "tagline": "Second-skin basics",
+      "tone": "#cdb3a8",
+      "sortOrder": 5,
+      "image": "",
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T17:42:58.487Z",
+      "cutout": "/uploads/cutout-panty.png",
+      "gender": "women"
+    },
+    {
+      "id": "cat-lounge",
+      "name": "Loungewear",
+      "slug": "loungewear",
+      "tagline": "Home, but make it chic",
+      "tone": "#a9a195",
+      "sortOrder": 6,
+      "image": "",
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T17:42:58.488Z",
+      "cutout": "/uploads/cutout-lounge.png",
+      "gender": "women"
+    },
+    {
+      "id": "63e65e35-d97a-4b92-983a-02bd328dd60b",
+      "createdAt": "2026-10-22T17:42:58.489Z",
+      "updatedAt": "2026-10-22T17:50:06.004Z",
+      "name": "Men's Pajamas",
+      "slug": "men-pajamas",
+      "tagline": "Sleep like you mean it",
+      "image": "",
+      "cutout": "/uploads/cutout-men-splitM7.png",
+      "gender": "men",
+      "tone": "#b9b2a8",
+      "sortOrder": 11
+    },
+    {
+      "id": "db819c6c-539e-4393-9477-34a0ac8be139",
+      "createdAt": "2026-10-22T17:42:58.490Z",
+      "updatedAt": "2026-10-22T17:50:06.005Z",
+      "name": "Men's Boxers",
+      "slug": "men-boxers",
+      "tagline": "Everyday essentials",
+      "image": "",
+      "cutout": "/uploads/cutout-men-mbox0.png",
+      "gender": "men",
+      "tone": "#c9cfd4",
+      "sortOrder": 12
+    },
+    {
+      "id": "549eef9f-fcc2-4704-8a96-316c889b5a01",
+      "createdAt": "2026-10-22T17:42:58.491Z",
+      "updatedAt": "2026-10-22T17:50:06.009Z",
+      "name": "Men's Lounge",
+      "slug": "men-lounge",
+      "tagline": "Off-duty, upgraded",
+      "image": "",
+      "cutout": "/uploads/cutout-men-mlounge6.png",
+      "gender": "men",
+      "tone": "#cdbfae",
+      "sortOrder": 13
+    },
+    {
+      "id": "326706e4-ddda-4375-8060-c322f73d5ba3",
+      "createdAt": "2026-10-22T17:42:58.492Z",
+      "updatedAt": "2026-10-22T17:50:06.010Z",
+      "name": "Men's Robes",
+      "slug": "men-robes",
+      "tagline": "After-shower calm",
+      "image": "",
+      "cutout": "/uploads/cutout-men-mrobe3.png",
+      "gender": "men",
+      "tone": "#d7c4bd",
+      "sortOrder": 14
+    }
+  ],
+  "products": [
+    {
+      "id": "273462bf-9571-454c-82a2-612e7bd7426b",
+      "createdAt": "2026-11-26T03:28:25.673Z",
+      "slug": "sherpa-lounge-set",
+      "name": "Sherpa Lounge Set",
+      "categoryId": "549eef9f-fcc2-4704-8a96-316c889b5a01",
+      "price": 3490,
+      "comparePrice": 3990,
+      "description": "Heavy sherpa-lined jacket and joggers — the warmest set we make.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "name": "Oat",
+          "hex": "#c9b8a0"
+        },
+        {
+          "name": "Taupe",
+          "hex": "#9c8c7a"
+        }
+      ],
+      "images": [
+        "/uploads/look-sherpa-1.jpg",
+        "/uploads/look-sherpa-0.jpg"
+      ],
+      "lookImage": "/fitting/sherpa-model.webp",
+      "lookGarment": "/fitting/sherpa-cloth.webp",
+      "stock": 15,
+      "featured": true,
+      "isNew": true,
+      "active": true,
+      "updatedAt": "2026-11-26T03:28:25.673Z"
+    },
+    {
+      "id": "829e0e99-21ef-4c71-89ba-e9e4628c56d1",
+      "createdAt": "2026-11-26T03:28:25.673Z",
+      "slug": "teddy-charm-cami",
+      "name": "Teddy Charm Cami",
+      "categoryId": "cat-lounge",
+      "price": 1090,
+      "comparePrice": null,
+      "description": "Soft black cami with a tiny teddy charm and print.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#1d1b1b"
+        }
+      ],
+      "images": [
+        "/uploads/look-bearcami-1.jpg",
+        "/uploads/look-bearcami-0.jpg"
+      ],
+      "lookImage": "/fitting/bearcami-model.webp",
+      "lookGarment": "/fitting/bearcami-cloth.webp",
+      "stock": 15,
+      "featured": true,
+      "isNew": true,
+      "active": true,
+      "updatedAt": "2026-11-26T03:28:25.673Z"
+    },
+    {
+      "id": "a0ccacad-0b33-4e7f-802e-1998132ca5dd",
+      "createdAt": "2026-11-26T03:28:25.673Z",
+      "slug": "love-struck-cami",
+      "name": "Love Struck Cami",
+      "categoryId": "cat-lounge",
+      "price": 990,
+      "comparePrice": 1290,
+      "description": "Stretch rib cami with a printed slogan — sleep or street.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#1d1b1b"
+        },
+        {
+          "name": "White",
+          "hex": "#f3f1ee"
+        }
+      ],
+      "images": [
+        "/uploads/look-lovecami-1.jpg",
+        "/uploads/look-lovecami-0.jpg"
+      ],
+      "lookImage": "/fitting/lovecami-model.webp",
+      "lookGarment": "/fitting/lovecami-cloth.webp",
+      "stock": 15,
+      "featured": true,
+      "isNew": true,
+      "active": true,
+      "updatedAt": "2026-11-26T03:28:25.673Z"
+    },
+    {
+      "id": "745abc02-b8c1-4950-bb15-967fbe0a0918",
+      "createdAt": "2026-11-26T03:28:25.673Z",
+      "slug": "teddy-fleece-robe",
+      "name": "Teddy Fleece Robe",
+      "categoryId": "cat-robe",
+      "price": 3290,
+      "comparePrice": null,
+      "description": "Hooded fleece robe with teddy details — wrap up after a bath.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "sizes": [
+        "S/M",
+        "L/XL"
+      ],
+      "colors": [
+        {
+          "name": "Peach",
+          "hex": "#f0b98d"
+        }
+      ],
+      "images": [
+        "/uploads/look-bearrobe-1.jpg",
+        "/uploads/look-bearrobe-0.jpg"
+      ],
+      "lookImage": "/fitting/bearrobe-model.webp",
+      "lookGarment": "/fitting/bearrobe-cloth.webp",
+      "stock": 15,
+      "featured": true,
+      "isNew": true,
+      "active": true,
+      "updatedAt": "2026-11-26T03:28:25.673Z"
+    },
+    {
+      "id": "d293db54-6fa3-4c8e-a0ae-554ac3ef34f3",
+      "createdAt": "2026-11-26T03:28:25.673Z",
+      "slug": "cable-knit-robe",
+      "name": "Cable Knit Robe",
+      "categoryId": "cat-robe",
+      "price": 3490,
+      "comparePrice": 3990,
+      "description": "Long cable-knit robe with contrast trim and a tie belt.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "sizes": [
+        "S/M",
+        "L/XL"
+      ],
+      "colors": [
+        {
+          "name": "Cream",
+          "hex": "#efe6d6"
+        },
+        {
+          "name": "Black trim",
+          "hex": "#1e1a18"
+        }
+      ],
+      "images": [
+        "/uploads/look-cablerobe-1.jpg",
+        "/uploads/look-cablerobe-0.jpg"
+      ],
+      "lookImage": "/fitting/cablerobe-model.webp",
+      "lookGarment": "/fitting/cablerobe-cloth.webp",
+      "stock": 15,
+      "featured": true,
+      "isNew": true,
+      "active": true,
+      "updatedAt": "2026-11-26T03:28:25.673Z"
+    },
+    {
+      "id": "2d2955fa-9e0d-49e0-8f19-dd83e7ecd349",
+      "createdAt": "2026-11-26T03:28:25.673Z",
+      "slug": "teddy-bear-fleece-set",
+      "name": "Teddy Bear Fleece Set",
+      "categoryId": "cat-lounge",
+      "price": 2990,
+      "comparePrice": 3490,
+      "description": "Cosy peach fleece with a big teddy face and bear-paw knees.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "Peach",
+          "hex": "#f2b889"
+        }
+      ],
+      "images": [
+        "/uploads/look-bearfleece-1.jpg",
+        "/uploads/look-bearfleece-0.jpg"
+      ],
+      "lookImage": "/fitting/bearfleece-model.webp",
+      "lookGarment": "/fitting/bearfleece-cloth.webp",
+      "stock": 15,
+      "featured": true,
+      "isNew": true,
+      "active": true,
+      "updatedAt": "2026-11-26T03:28:25.673Z"
+    },
+    {
+      "id": "22ccef48-9f86-4c61-8bc0-10a53d92b6bd",
+      "createdAt": "2026-11-26T03:28:25.673Z",
+      "slug": "starfish-fleece-set",
+      "name": "Starfish Fleece Set",
+      "categoryId": "cat-pajama",
+      "price": 2690,
+      "comparePrice": null,
+      "description": "Plush sand-coloured fleece with a quiet starfish print.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "Sand",
+          "hex": "#efe2cc"
+        }
+      ],
+      "images": [
+        "/uploads/look-starfish-1.jpg",
+        "/uploads/look-starfish-0.jpg"
+      ],
+      "lookImage": "/fitting/starfish-model.webp",
+      "lookGarment": "/fitting/starfish-cloth.webp",
+      "stock": 15,
+      "featured": true,
+      "isNew": true,
+      "active": true,
+      "updatedAt": "2026-11-26T03:28:25.673Z"
+    },
+    {
+      "id": "0227e539-8b66-4457-ae4e-5d18af0789bf",
+      "createdAt": "2026-11-26T03:28:25.673Z",
+      "slug": "puppy-print-fleece-set",
+      "name": "Puppy Print Fleece Set",
+      "categoryId": "cat-pajama",
+      "price": 2790,
+      "comparePrice": 3290,
+      "description": "Warm fleece pajamas covered in tiny puppies — winter favourite.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "Cream",
+          "hex": "#f1e2cc"
+        }
+      ],
+      "images": [
+        "/uploads/look-puppy-1.jpg",
+        "/uploads/look-puppy-0.jpg"
+      ],
+      "lookImage": "/fitting/puppy-model.webp",
+      "lookGarment": "/fitting/puppy-cloth.webp",
+      "stock": 15,
+      "featured": true,
+      "isNew": true,
+      "active": true,
+      "updatedAt": "2026-11-26T03:28:25.673Z"
+    },
+    {
+      "id": "b96be2c5-2c2d-4eba-814d-08f9982b5a3d",
+      "createdAt": "2026-11-26T03:28:25.673Z",
+      "slug": "brushstroke-fleece-set",
+      "name": "Brushstroke Fleece Set",
+      "categoryId": "cat-pajama",
+      "price": 2690,
+      "comparePrice": 3190,
+      "description": "Cloud-soft ivory fleece with a hand-painted brushstroke pattern.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "Ivory",
+          "hex": "#efe8dc"
+        }
+      ],
+      "images": [
+        "/uploads/look-brush-1.jpg",
+        "/uploads/look-brush-0.jpg"
+      ],
+      "lookImage": "/fitting/brush-model.webp",
+      "lookGarment": "/fitting/brush-cloth.webp",
+      "stock": 15,
+      "featured": true,
+      "isNew": true,
+      "active": true,
+      "updatedAt": "2026-11-26T03:28:25.673Z"
+    },
+    {
+      "id": "6ecc0fab-cd29-468f-9137-89420cf7f76c",
+      "createdAt": "2026-11-26T03:28:25.673Z",
+      "slug": "hedgehog-fleece-pajama-set",
+      "name": "Hedgehog Fleece Pajama Set",
+      "categoryId": "cat-pajama",
+      "price": 2790,
+      "comparePrice": 3290,
+      "description": "Soft coral-fleece set with a hedgehog print, button-up top and relaxed pants.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "Blush",
+          "hex": "#e8b9b4"
+        }
+      ],
+      "images": [
+        "/uploads/look-hedgehog-1.jpg",
+        "/uploads/look-hedgehog-0.jpg"
+      ],
+      "lookImage": "/fitting/hedgehog-model.webp",
+      "lookGarment": "/fitting/hedgehog-cloth.webp",
+      "stock": 15,
+      "featured": true,
+      "isNew": true,
+      "active": true,
+      "updatedAt": "2026-11-26T03:28:25.673Z"
+    },
+    {
+      "id": "prod-luna-satin-slip",
+      "slug": "luna-satin-slip",
+      "name": "Luna Satin Slip",
+      "categoryId": "cat-night",
+      "price": 2450,
+      "comparePrice": 2990,
+      "colors": [
+        {
+          "name": "Champagne",
+          "hex": "#e9d3bd"
+        },
+        {
+          "name": "Noir",
+          "hex": "#2b2423"
+        },
+        {
+          "name": "Wine",
+          "hex": "#6e2a35"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "/uploads/unsplash-luna-0.jpg",
+        "/uploads/unsplash-luna-1.jpg"
+      ],
+      "stock": 20,
+      "featured": true,
+      "isNew": true,
+      "active": true,
+      "description": "A bias-cut satin slip that pours over the body like moonlight. Adjustable straps and a soft cowl neckline.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-11-26T03:34:36.970Z",
+      "lookImage": ""
+    },
+    {
+      "id": "prod-rose-lace-chemise",
+      "slug": "rose-lace-chemise",
+      "name": "Rose Lace Chemise",
+      "categoryId": "cat-night",
+      "price": 2190,
+      "comparePrice": null,
+      "colors": [
+        {
+          "name": "Blush",
+          "hex": "#e7c1b8"
+        },
+        {
+          "name": "Ivory",
+          "hex": "#f3ece1"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "/uploads/unsplash-rose-0.jpg",
+        "/uploads/unsplash-rose-1.jpg"
+      ],
+      "stock": 20,
+      "featured": true,
+      "isNew": false,
+      "active": true,
+      "description": "Delicate scalloped lace meets a flowing chemise silhouette. Romantic, light and made for warm nights.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T16:15:05.430Z",
+      "lookImage": ""
+    },
+    {
+      "id": "prod-midnight-button-set",
+      "slug": "midnight-button-set",
+      "name": "Midnight Button Set",
+      "categoryId": "cat-pajama",
+      "price": 3290,
+      "comparePrice": 3790,
+      "colors": [
+        {
+          "name": "Noir",
+          "hex": "#2b2423"
+        },
+        {
+          "name": "Dusk Blue",
+          "hex": "#8d9bb0"
+        },
+        {
+          "name": "Champagne",
+          "hex": "#e9d3bd"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "/uploads/unsplash-midnight-0.jpg",
+        "/uploads/unsplash-midnight-1.jpg"
+      ],
+      "stock": 19,
+      "featured": true,
+      "isNew": false,
+      "active": true,
+      "description": "Classic piped shirt and wide-leg pant in fluid satin. The pajama set that feels like a hotel stay.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T17:07:18.185Z",
+      "lookImage": ""
+    },
+    {
+      "id": "prod-cloud-cotton-set",
+      "slug": "cloud-cotton-set",
+      "name": "Cloud Cotton Set",
+      "categoryId": "cat-pajama",
+      "price": 2590,
+      "comparePrice": null,
+      "colors": [
+        {
+          "name": "Ivory",
+          "hex": "#f3ece1"
+        },
+        {
+          "name": "Sage",
+          "hex": "#b6bda6"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "/uploads/unsplash-cloud-0.jpg",
+        "/uploads/unsplash-cloud-1.jpg"
+      ],
+      "stock": 20,
+      "featured": false,
+      "isNew": true,
+      "active": true,
+      "description": "Breathable cotton modal shorts set for humid nights. Soft, airy, and impossibly easy to wear.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T17:35:12.127Z",
+      "lookImage": ""
+    },
+    {
+      "id": "prod-velvet-dream-robe",
+      "slug": "velvet-dream-robe",
+      "name": "Velvet Dream Robe",
+      "categoryId": "cat-robe",
+      "price": 3890,
+      "comparePrice": 4490,
+      "colors": [
+        {
+          "name": "Wine",
+          "hex": "#6e2a35"
+        },
+        {
+          "name": "Mocha",
+          "hex": "#7b5b4c"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "/uploads/unsplash-velvet-0.jpg",
+        "/uploads/unsplash-velvet-1.jpg"
+      ],
+      "stock": 20,
+      "featured": true,
+      "isNew": false,
+      "active": true,
+      "description": "Plush velvet robe with a shawl collar and tie waist. Winter evenings, upgraded.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T16:15:05.432Z",
+      "lookImage": ""
+    },
+    {
+      "id": "prod-silk-kimono-robe",
+      "slug": "silk-kimono-robe",
+      "name": "Silk Kimono Robe",
+      "categoryId": "cat-robe",
+      "price": 3490,
+      "comparePrice": null,
+      "colors": [
+        {
+          "name": "Champagne",
+          "hex": "#e9d3bd"
+        },
+        {
+          "name": "Noir",
+          "hex": "#2b2423"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "/uploads/unsplash-kimono-0.jpg",
+        "/uploads/unsplash-kimono-1.jpg"
+      ],
+      "stock": 20,
+      "featured": false,
+      "isNew": true,
+      "active": true,
+      "description": "Lightweight kimono robe with wide sleeves. Throw it over any set and feel instantly put together.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T16:15:05.436Z",
+      "lookImage": ""
+    },
+    {
+      "id": "prod-soft-touch-bralette",
+      "slug": "soft-touch-bralette",
+      "name": "Soft Touch Bralette",
+      "categoryId": "cat-bra",
+      "price": 1290,
+      "comparePrice": 1490,
+      "colors": [
+        {
+          "name": "Blush",
+          "hex": "#e7c1b8"
+        },
+        {
+          "name": "Noir",
+          "hex": "#2b2423"
+        },
+        {
+          "name": "Ivory",
+          "hex": "#f3ece1"
+        }
+      ],
+      "sizes": [
+        "32B",
+        "34B",
+        "34C",
+        "36C",
+        "38C"
+      ],
+      "images": [
+        "/uploads/unsplash-bralette-0.jpg",
+        "/uploads/unsplash-bralette-1.jpg"
+      ],
+      "stock": 20,
+      "featured": true,
+      "isNew": false,
+      "active": true,
+      "description": "Wire-free, padded bralette with a smooth finish. All-day comfort that disappears under clothes.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T16:15:05.433Z",
+      "lookImage": ""
+    },
+    {
+      "id": "prod-lace-plunge-bra",
+      "slug": "lace-plunge-bra",
+      "name": "Lace Plunge Bra",
+      "categoryId": "cat-bra",
+      "price": 1590,
+      "comparePrice": null,
+      "colors": [
+        {
+          "name": "Wine",
+          "hex": "#6e2a35"
+        },
+        {
+          "name": "Noir",
+          "hex": "#2b2423"
+        }
+      ],
+      "sizes": [
+        "32B",
+        "34B",
+        "34C",
+        "36C",
+        "38C"
+      ],
+      "images": [
+        "/uploads/unsplash-plunge-0.jpg",
+        "/uploads/unsplash-plunge-1.jpg"
+      ],
+      "stock": 20,
+      "featured": false,
+      "isNew": false,
+      "active": true,
+      "description": "Lightly lined plunge bra in floral lace for a flattering, natural lift.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T16:15:05.437Z",
+      "lookImage": ""
+    },
+    {
+      "id": "prod-everyday-brief-pack",
+      "slug": "everyday-brief-pack-of-3",
+      "name": "Everyday Brief (Pack of 3)",
+      "categoryId": "cat-panty",
+      "price": 990,
+      "comparePrice": 1290,
+      "colors": [
+        {
+          "name": "Blush",
+          "hex": "#e7c1b8"
+        },
+        {
+          "name": "Ivory",
+          "hex": "#f3ece1"
+        },
+        {
+          "name": "Mocha",
+          "hex": "#7b5b4c"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "/uploads/unsplash-brief-0.jpg",
+        "/uploads/unsplash-brief-1.jpg"
+      ],
+      "stock": 20,
+      "featured": true,
+      "isNew": false,
+      "active": true,
+      "description": "Seam-free cotton briefs in three soft neutrals. The basics you will reach for every day.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T16:15:05.434Z",
+      "lookImage": ""
+    },
+    {
+      "id": "prod-lace-trim-hipster",
+      "slug": "lace-trim-hipster",
+      "name": "Lace Trim Hipster",
+      "categoryId": "cat-panty",
+      "price": 590,
+      "comparePrice": null,
+      "colors": [
+        {
+          "name": "Noir",
+          "hex": "#2b2423"
+        },
+        {
+          "name": "Blush",
+          "hex": "#e7c1b8"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "/uploads/unsplash-hipster-0.jpg",
+        "/uploads/unsplash-hipster-1.jpg"
+      ],
+      "stock": 20,
+      "featured": false,
+      "isNew": true,
+      "active": true,
+      "description": "Mid-rise hipster with a lace waistband that never digs in.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T16:15:05.438Z",
+      "lookImage": ""
+    },
+    {
+      "id": "prod-ribbed-lounge-set",
+      "slug": "ribbed-lounge-set",
+      "name": "Ribbed Lounge Set",
+      "categoryId": "cat-lounge",
+      "price": 2890,
+      "comparePrice": 3290,
+      "colors": [
+        {
+          "name": "Mocha",
+          "hex": "#7b5b4c"
+        },
+        {
+          "name": "Sage",
+          "hex": "#b6bda6"
+        },
+        {
+          "name": "Ivory",
+          "hex": "#f3ece1"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "/uploads/unsplash-ribbed-0.jpg",
+        "/uploads/unsplash-ribbed-1.jpg"
+      ],
+      "stock": 20,
+      "featured": true,
+      "isNew": true,
+      "active": true,
+      "description": "Stretchy ribbed top and relaxed jogger. From couch to café without changing.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T16:15:05.435Z",
+      "lookImage": ""
+    },
+    {
+      "id": "prod-weekend-wrap-cardigan",
+      "slug": "weekend-wrap-cardigan",
+      "name": "Weekend Wrap Cardigan",
+      "categoryId": "cat-lounge",
+      "price": 2290,
+      "comparePrice": null,
+      "colors": [
+        {
+          "name": "Champagne",
+          "hex": "#e9d3bd"
+        },
+        {
+          "name": "Dusk Blue",
+          "hex": "#8d9bb0"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "/uploads/unsplash-cardigan-0.jpg",
+        "/uploads/unsplash-cardigan-1.jpg"
+      ],
+      "stock": 20,
+      "featured": false,
+      "isNew": false,
+      "active": true,
+      "description": "A soft-knit wrap cardigan to layer over everything you sleep and lounge in.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade",
+        "Delivered in discreet packaging"
+      ],
+      "createdAt": "2026-10-21T00:00:00.000Z",
+      "updatedAt": "2026-10-22T16:15:05.439Z",
+      "lookImage": ""
+    },
+    {
+      "id": "d8a6407f-c68c-42ca-8df2-2297935a3eb1",
+      "createdAt": "2026-10-22T17:42:58.494Z",
+      "updatedAt": "2026-10-22T17:42:58.494Z",
+      "name": "Crimson Satin Pajama Set",
+      "categoryId": "63e65e35-d97a-4b92-983a-02bd328dd60b",
+      "price": 3490,
+      "comparePrice": 3990,
+      "description": "Smooth satin shirt and drawstring pants with contrast piping. Cool on warm nights, sharp enough for Sunday breakfast.",
+      "details": [
+        "Satin-finish polyester",
+        "Relaxed fit, button-up shirt",
+        "Gentle wash, dry in shade"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "name": "Crimson",
+          "hex": "#8e1b22"
+        },
+        {
+          "name": "Midnight",
+          "hex": "#1f2a44"
+        }
+      ],
+      "images": [
+        "/uploads/unsplash-mpj-1.jpg",
+        "/uploads/unsplash-mpj-3.jpg"
+      ],
+      "stock": 20,
+      "featured": true,
+      "isNew": true,
+      "active": true,
+      "slug": "crimson-satin-pajama-set",
+      "lookImage": ""
+    },
+    {
+      "id": "93d973f7-10eb-4731-9178-88bff598472c",
+      "createdAt": "2026-10-22T17:42:58.495Z",
+      "updatedAt": "2026-10-22T17:42:58.495Z",
+      "name": "Slate Satin Sleep Shirt",
+      "categoryId": "63e65e35-d97a-4b92-983a-02bd328dd60b",
+      "price": 2690,
+      "comparePrice": null,
+      "description": "A long-sleeve satin sleep shirt with a soft collar — wear it to bed or over a tee.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "name": "Slate",
+          "hex": "#5b6270"
+        },
+        {
+          "name": "Black",
+          "hex": "#1c1c1c"
+        }
+      ],
+      "images": [
+        "/uploads/unsplash-splitM-7.jpg",
+        "/uploads/unsplash-splitM-1.jpg"
+      ],
+      "stock": 18,
+      "featured": false,
+      "isNew": true,
+      "active": true,
+      "slug": "slate-satin-sleep-shirt",
+      "lookImage": "/fitting/m-slate.webp"
+    },
+    {
+      "id": "0f15b5f5-780f-48fb-87ff-28887b7fb065",
+      "createdAt": "2026-10-22T17:42:58.496Z",
+      "updatedAt": "2026-10-22T17:42:58.496Z",
+      "name": "Classic Cotton Boxers (Pack of 3)",
+      "categoryId": "db819c6c-539e-4393-9477-34a0ac8be139",
+      "price": 1290,
+      "comparePrice": 1590,
+      "description": "Breathable combed-cotton boxers with a soft covered waistband. Three in a pack.",
+      "details": [
+        "100% combed cotton",
+        "Covered elastic waistband"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#1c1c1c"
+        },
+        {
+          "name": "Grey",
+          "hex": "#8c8c8c"
+        },
+        {
+          "name": "Navy",
+          "hex": "#1f2a44"
+        }
+      ],
+      "images": [
+        "/uploads/unsplash-mbox-0.jpg"
+      ],
+      "stock": 40,
+      "featured": true,
+      "isNew": false,
+      "active": true,
+      "slug": "classic-cotton-boxers-pack-of-3",
+      "lookImage": ""
+    },
+    {
+      "id": "c6a38e69-d2e9-42e2-b791-e9c22f269f84",
+      "createdAt": "2026-10-22T17:42:58.497Z",
+      "updatedAt": "2026-10-22T17:42:58.497Z",
+      "name": "Everyday Lounge Shorts",
+      "categoryId": "db819c6c-539e-4393-9477-34a0ac8be139",
+      "price": 990,
+      "comparePrice": null,
+      "description": "Light, airy shorts for lazy afternoons and warm nights.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "name": "Butter",
+          "hex": "#efe3a3"
+        },
+        {
+          "name": "Grey",
+          "hex": "#8c8c8c"
+        }
+      ],
+      "images": [
+        "/uploads/unsplash-mbox-5.jpg"
+      ],
+      "stock": 25,
+      "featured": false,
+      "isNew": false,
+      "active": true,
+      "slug": "everyday-lounge-shorts",
+      "lookImage": ""
+    },
+    {
+      "id": "ac66652e-0bc6-43ce-bc58-d4f9c6b44549",
+      "createdAt": "2026-10-22T17:42:58.497Z",
+      "updatedAt": "2026-10-22T17:42:58.497Z",
+      "name": "Cloud Fleece Hoodie",
+      "categoryId": "549eef9f-fcc2-4704-8a96-316c889b5a01",
+      "price": 2890,
+      "comparePrice": null,
+      "description": "Brushed-fleece hoodie that feels like a blanket — for cold Kathmandu mornings.",
+      "details": [
+        "Brushed fleece inside",
+        "Kangaroo pocket"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "name": "Ivory",
+          "hex": "#efeae0"
+        },
+        {
+          "name": "Charcoal",
+          "hex": "#3a3a3a"
+        }
+      ],
+      "images": [
+        "/uploads/unsplash-mlounge-2.jpg",
+        "/uploads/unsplash-mlounge-6.jpg"
+      ],
+      "stock": 22,
+      "featured": true,
+      "isNew": false,
+      "active": true,
+      "slug": "cloud-fleece-hoodie",
+      "lookImage": "/fitting/m-hoodie.webp",
+      "lookGarment": "/fitting/m-hoodie-cloth.webp"
+    },
+    {
+      "id": "b3b3768b-d5a0-4786-93b5-9a0e24f53d94",
+      "createdAt": "2026-10-22T17:42:58.498Z",
+      "updatedAt": "2026-10-22T17:42:58.498Z",
+      "name": "Weekend Jogger Set",
+      "categoryId": "549eef9f-fcc2-4704-8a96-316c889b5a01",
+      "price": 3290,
+      "comparePrice": null,
+      "description": "Matching sweatshirt and tapered joggers. Home, errands, repeat.",
+      "details": [
+        "Breathable, skin-friendly fabric",
+        "Gentle wash, dry in shade"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "name": "Ivory",
+          "hex": "#efeae0"
+        },
+        {
+          "name": "Blue",
+          "hex": "#4a6fa5"
+        }
+      ],
+      "images": [
+        "/uploads/unsplash-mlounge-4.jpg",
+        "/uploads/unsplash-mlounge-0.jpg"
+      ],
+      "stock": 15,
+      "featured": false,
+      "isNew": true,
+      "active": true,
+      "slug": "weekend-jogger-set",
+      "lookImage": "/fitting/m-jogger-blue.webp"
+    },
+    {
+      "id": "1c99d094-356e-461c-ba5f-fc7ea53c7af2",
+      "createdAt": "2026-10-22T17:42:58.499Z",
+      "updatedAt": "2026-10-22T17:42:58.499Z",
+      "name": "Waffle Bath Robe",
+      "categoryId": "326706e4-ddda-4375-8060-c322f73d5ba3",
+      "price": 3190,
+      "comparePrice": null,
+      "description": "Light waffle-knit robe that dries fast and packs small.",
+      "details": [
+        "Waffle-knit cotton",
+        "Tie belt, two pockets"
+      ],
+      "sizes": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "White",
+          "hex": "#f4f2ee"
+        },
+        {
+          "name": "Stone",
+          "hex": "#a59f95"
+        }
+      ],
+      "images": [
+        "/uploads/unsplash-mrobe-2.jpg",
+        "/uploads/unsplash-mrobe-7.jpg"
+      ],
+      "stock": 12,
+      "featured": true,
+      "isNew": false,
+      "active": true,
+      "slug": "waffle-bath-robe",
+      "lookImage": ""
+    },
+    {
+      "id": "09da72fb-f9ef-48f0-8d37-2dce1685ed4d",
+      "createdAt": "2026-10-22T17:42:58.500Z",
+      "updatedAt": "2026-10-22T17:42:58.500Z",
+      "name": "Plaid Flannel Robe",
+      "categoryId": "326706e4-ddda-4375-8060-c322f73d5ba3",
+      "price": 2990,
+      "comparePrice": 3490,
+      "description": "Warm brushed flannel in a classic plaid — winter evenings, sorted.",
+      "details": [
+        "Brushed cotton flannel",
+        "Shawl collar"
+      ],
+      "sizes": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "Plaid",
+          "hex": "#2b2b2b"
+        },
+        {
+          "name": "Brown",
+          "hex": "#6a4b3a"
+        }
+      ],
+      "images": [
+        "/uploads/unsplash-mrobe-1.jpg",
+        "/uploads/unsplash-mrobe-0.jpg"
+      ],
+      "stock": 10,
+      "featured": false,
+      "isNew": false,
+      "active": true,
+      "slug": "plaid-flannel-robe",
+      "lookImage": ""
+    }
+  ],
+  "settings": {
+    "storeName": "Saanjh",
+    "tagline": "Nightwear & intimates, made for you",
+    "announcement": "Free delivery inside Kathmandu Valley on orders above Rs 3,000 ✦ Cash on Delivery available",
+    "currency": "Rs",
+    "phone": "+977 98XXXXXXXX",
+    "email": "hello@saanjh.com.np",
+    "address": "Kathmandu, Nepal",
+    "social": {
+      "instagram": "https://instagram.com/",
+      "facebook": "https://facebook.com/",
+      "tiktok": "https://tiktok.com/"
+    },
+    "shipping": {
+      "insideValley": 100,
+      "outsideValley": 150,
+      "freeAbove": 3000
+    },
+    "paymentMethods": [
+      "Cash on Delivery",
+      "eSewa",
+      "Khalti"
+    ],
+    "heroSlides": [
+      {
+        "id": "hero-1",
+        "eyebrow": "The Satin Edit",
+        "title": "Soft nights,\nslow mornings.",
+        "subtitle": "Satin slips, silky sets and robes designed to make bedtime feel like a ritual.",
+        "ctaText": "Shop Night Dresses",
+        "ctaLink": "/shop?category=night-dresses",
+        "image": "/uploads/unsplash-hero1.jpg",
+        "video": "",
+        "tone": "#cfa99c"
+      },
+      {
+        "id": "hero-2",
+        "eyebrow": "Everyday Intimates",
+        "title": "Made to feel\nlike nothing.",
+        "subtitle": "Wire-free bralettes and seam-free basics in shades that match your skin.",
+        "ctaText": "Shop Intimates",
+        "ctaLink": "/shop?category=bras",
+        "image": "/uploads/unsplash-hero2.jpg",
+        "video": "",
+        "tone": "#b8a397"
+      }
+    ],
+    "story": {
+      "stamp": "Est. 2026 · Kathmandu",
+      "pills": [
+        "/uploads/unsplash-luna-0.jpg",
+        "/uploads/unsplash-kimono-0.jpg"
+      ],
+      "values": [
+        {
+          "title": "Hand-picked fabrics",
+          "text": "Satin, modal and soft cotton — chosen by touch, not by catalogue."
+        },
+        {
+          "title": "Discreet packaging",
+          "text": "Plain boxes, no logos. What’s inside is yours to know."
+        },
+        {
+          "title": "Delivered across Nepal",
+          "text": "Valley in 1–2 days, everywhere else in 3–5."
+        }
+      ],
+      "eyebrow": "Our Story",
+      "title": "Comfort is the new luxury.",
+      "body": "We started with a simple idea: what you wear when no one is watching should feel the most beautiful. Every piece is chosen for its fabric, fit and feel — then packed discreetly and delivered to your door anywhere in Nepal.",
+      "image": "/uploads/unsplash-story.jpg"
+    },
+    "promises": [
+      {
+        "title": "Discreet Packaging",
+        "text": "Plain, unbranded boxes. Always."
+      },
+      {
+        "title": "Cash on Delivery",
+        "text": "Pay when it reaches you."
+      },
+      {
+        "title": "Easy Exchange",
+        "text": "Size not right? Exchange within 7 days."
+      },
+      {
+        "title": "All Nepal Delivery",
+        "text": "Valley in 1–2 days, outside in 3–5."
+      }
+    ],
+    "paymentDetails": {
+      "eSewa": {
+        "qr": "/uploads/demo-esewa-qr.png",
+        "name": "Saanjh (DEMO)",
+        "id": "98XXXXXXXX"
+      },
+      "Khalti": {
+        "qr": "",
+        "name": "",
+        "id": ""
+      }
+    },
+    "content": {
+      "sections": {
+        "genderSplit": {
+          "show": true,
+          "women": {
+            "label": "Women",
+            "subtitle": "Satin, lace & soft cotton",
+            "image": "/uploads/unsplash-splitW-6.jpg"
+          },
+          "men": {
+            "label": "Men",
+            "subtitle": "Pajamas, robes & lounge",
+            "image": "/uploads/unsplash-splitM-7.jpg"
+          }
+        },
+        "promises": {
+          "show": false
+        },
+        "categories": {
+          "show": true,
+          "eyebrow": "Shop by Category",
+          "title": "Find your *kind* of comfort"
+        },
+        "bestsellers": {
+          "show": true,
+          "eyebrow": "Most Loved",
+          "title": "Our *bestsellers*"
+        },
+        "story": {
+          "show": false
+        },
+        "newArrivals": {
+          "show": true,
+          "eyebrow": "Just In",
+          "title": "New *arrivals*",
+          "marquee": "New in ✦ Just arrived"
+        },
+        "social": {
+          "show": true,
+          "eyebrow": "Follow along",
+          "title": "Bedtime stories, *new drops*\n& real customers in our pieces."
+        }
+      },
+      "search": {
+        "placeholder": "Search satin, robes, bralettes…",
+        "popular": [
+          "Satin",
+          "Lace",
+          "Robe",
+          "Pajama",
+          "Bralette",
+          "Cotton"
+        ]
+      },
+      "product": {
+        "perks": [
+          "Cash on Delivery available",
+          "Discreet, unbranded packaging",
+          "7-day size exchange"
+        ],
+        "exchange": "Size exchange within 7 days for unworn pieces with tags. All orders ship in plain, discreet packaging.",
+        "relatedEyebrow": "Complete the look",
+        "relatedTitle": "You may also like"
+      },
+      "delivery": {
+        "valleyDays": "1–2 days",
+        "outsideDays": "3–5 days"
+      },
+      "mood": {
+        "cursor": true,
+        "stars": true,
+        "skyBar": true
+      },
+      "footer": {
+        "help": [
+          "Delivery all over Nepal",
+          "Cash on Delivery · eSewa · Khalti",
+          "7-day size exchange",
+          "Discreet packaging"
+        ],
+        "note": "Made with love in Nepal",
+        "goodnight": "शुभ रात्रि ✦"
+      }
+    },
+    "storeNameNepali": "साँझ",
+    "heroLooks": [
+      {
+        "id": "look-satin-slip",
+        "bg": "#8a6253",
+        "image": "/uploads/hero-look-satin-slip.png",
+        "eyebrow": "The Satin Edit",
+        "title": "Satin\nnights.",
+        "subtitle": "Bias-cut slips that pour over you like moonlight.",
+        "ctaText": "Shop night dresses",
+        "ctaLink": "/women?category=night-dresses"
+      },
+      {
+        "id": "look-lace",
+        "bg": "#c9b8a8",
+        "image": "/uploads/hero-look-lace.png",
+        "eyebrow": "The Lace Edit",
+        "title": "Soft\nlace.",
+        "subtitle": "Light chemises with delicate lace, made for warm nights.",
+        "ctaText": "Shop lace",
+        "ctaLink": "/product/rose-lace-chemise"
+      },
+      {
+        "id": "look-black-slip",
+        "bg": "#5a4036",
+        "image": "/uploads/hero-look-black-slip.png",
+        "eyebrow": "After Dark",
+        "title": "Little\nblack slip.",
+        "subtitle": "One strap down, nowhere to be. Silky slips in classic black.",
+        "ctaText": "Shop slips",
+        "ctaLink": "/product/luna-satin-slip"
+      }
+    ]
+  }
+}

@@ -3,7 +3,13 @@
  * later from the admin panel (/admin).
  */
 
+import fs from 'node:fs';
 import { DEFAULT_CONTENT, DEFAULT_STORY_EXTRAS } from './contentDefaults.js';
+
+// storeSnapshot.json = the real store (products, categories, settings) saved into the repo,
+// so a fresh copy from GitHub opens with everything the admin panel had. Orders are never saved here.
+const snapshotFile = new URL('./storeSnapshot.json', import.meta.url);
+const snapshot = fs.existsSync(snapshotFile) ? JSON.parse(fs.readFileSync(snapshotFile, 'utf8')) : null;
 
 const categories = [
   { id: 'cat-night', name: 'Night Dresses', slug: 'night-dresses', tagline: 'Slip into softness', tone: '#d9b8ad', sortOrder: 1 },
@@ -153,4 +159,6 @@ const settings = {
   ],
 };
 
-export const seedData = { categories, products, orders: [], settings };
+export const seedData = snapshot
+  ? { categories: snapshot.categories, products: snapshot.products, orders: [], settings: snapshot.settings }
+  : { categories, products, orders: [], settings };

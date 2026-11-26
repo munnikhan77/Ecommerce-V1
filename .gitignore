@@ -2,8 +2,8 @@ node_modules
 dist
 .env
 server/data
-server/uploads/*
-!server/uploads/.gitkeep
+# customers' payment screenshots stay private
+server/uploads/proof-*
 
 # duplicate of source-images/clothing-images
 source-images/*.zip
