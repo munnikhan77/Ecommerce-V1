@@ -7,3 +7,8 @@ server/uploads/proof-*
 
 # duplicate of source-images/clothing-images
 source-images/*.zip
+.vercel
+.env*
+
+# copied in at build time on Vercel
+client/public/uploads

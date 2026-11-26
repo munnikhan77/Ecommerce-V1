@@ -1,5 +1,6 @@
 import { db } from '../db/store.js';
 import { HttpError } from '../utils/httpError.js';
+import { isProofUrl } from './uploadController.js';
 
 export const ORDER_STATUSES = ['pending', 'confirmed', 'shipped', 'delivered', 'cancelled'];
 // 'cod' = pay on delivery; online payments wait for the shop to check the customer's screenshot
@@ -33,7 +34,7 @@ export function createOrder(req, res) {
   // QR payments: the customer pays first and uploads a screenshot of it
   const online = paymentMethod !== COD;
   const hasQr = Boolean(settings.paymentDetails?.[paymentMethod]?.qr);
-  const proof = /^\/uploads\/proof-[\w.-]+$/.test(req.body.paymentProof ?? '') ? req.body.paymentProof : '';
+  const proof = isProofUrl(req.body.paymentProof ?? '') ? req.body.paymentProof : '';
   if (online && hasQr && !proof) throw new HttpError(400, `Please upload the screenshot of your ${paymentMethod} payment`);
 
   // the same product can sit in the bag twice (two sizes) — check stock against the combined quantity

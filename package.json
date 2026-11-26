@@ -7,9 +7,20 @@
     "build": "npm run build --prefix client",
     "start": "npm start --prefix server",
     "seed": "npm run seed --prefix server",
-    "snapshot": "npm run snapshot --prefix server"
+    "snapshot": "npm run snapshot --prefix server",
+    "vercel-build": "mkdir -p client/public/uploads && cp -r server/uploads/. client/public/uploads/ && rm -f client/public/uploads/proof-* && npm run build --prefix client",
+    "db:import": "npm run db:import --prefix server"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
+  },
+  "type": "module",
+  "dependencies": {
+    "@neondatabase/serverless": "^1.2.1",
+    "@vercel/blob": "^2.9.0",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.3",
+    "multer": "^1.4.5-lts.2"
   }
 }

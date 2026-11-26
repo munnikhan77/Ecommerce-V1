@@ -16,6 +16,7 @@ export function createToken() {
 }
 
 export function verifyToken(token = '') {
+  if (!config.tokenSecret) return false;
   const [payload, signature] = token.split('.');
   if (!payload || !signature) return false;
   const expected = sign(payload);

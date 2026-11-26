@@ -1,0 +1,9 @@
+node_modules
+**/node_modules
+.env*
+server/.env
+server/data
+client/dist
+client/public/uploads
+source-images
+server/uploads/proof-*
