@@ -1,0 +1,52 @@
+.stack {
+  position: relative;
+}
+
+/* PageStack sets `top`: 0, or negative for a section taller than the screen so it pins at its bottom */
+.layer {
+  position: sticky;
+  top: 0;
+  /* light backdrop shows around a page while it sinks back into a card */
+  background: var(--bg-soft);
+}
+
+/* soft shadow on the edge that slides over the page below */
+.layer + .layer {
+  box-shadow: 0 -24px 50px -28px rgba(43, 34, 32, 0.35);
+}
+
+/* PageStack scales this down (and rounds its corners) while the next page covers it */
+.inner {
+  background: var(--bg);
+  overflow: clip;
+  box-shadow: 0 40px 80px -40px rgba(43, 34, 32, 0.45);
+  will-change: transform;
+}
+
+/* dims the page a touch as it gets covered — dusk blue, not brown */
+.shade {
+  position: absolute;
+  inset: 0;
+  background: var(--dusk-night);
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.layer:last-child .inner {
+  will-change: auto;
+}
+
+/* phones: the header floats over every page, so start each section below it, and keep the ends tight */
+@media (max-width: 720px) {
+  .inner > :global(section.section) {
+    padding-top: calc(var(--header-h) + 24px);
+    padding-bottom: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inner {
+    transform: none !important;
+  }
+}

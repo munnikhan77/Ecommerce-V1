@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { api } from '../api/client';
 import { useFetch } from '../hooks/useFetch';
@@ -12,6 +12,8 @@ import SectionHeading from '../components/ui/SectionHeading';
 import QuantityPicker from '../components/ui/QuantityPicker';
 import Button from '../components/ui/Button';
 import Price from '../components/ui/Price';
+import RichText from '../components/ui/RichText';
+import { genderInfo } from '../utils/gender';
 import { Loader, EmptyState } from '../components/ui/Loader';
 import styles from './ProductDetail.module.css';
 
@@ -39,14 +41,25 @@ function ProductView({ product }) {
   const [color, setColor] = useState(product.colors[0]?.name ?? '');
   const [quantity, setQuantity] = useState(1);
   const [error, setError] = useState('');
+  // bumped on every failed attempt so the size chips shake again each time
+  const [sizeNudge, setSizeNudge] = useState(0);
+  const sizeRef = useRef(null);
 
   const soldOut = product.stock === 0;
   const tone = product.colors.find((c) => c.name === color)?.hex ?? product.colors[0]?.hex;
 
-  useEffect(() => setError(''), [size]);
+  useEffect(() => {
+    setError('');
+    setSizeNudge(0);
+  }, [size]);
 
   const handleAdd = () => {
-    if (product.sizes.length && !size) return setError('Please choose a size');
+    if (product.sizes.length && !size) {
+      setError('Please choose your size first');
+      setSizeNudge((n) => n + 1);
+      sizeRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
     addItem({
       productId: product.id,
       slug: product.slug,
@@ -77,8 +90,7 @@ function ProductView({ product }) {
       content: (
         <p>
           Inside Kathmandu Valley Rs {settings?.shipping.insideValley} (free above Rs {settings?.shipping.freeAbove}), outside valley
-          Rs {settings?.shipping.outsideValley}. Size exchange within 7 days for unworn pieces with tags. All orders ship in plain,
-          discreet packaging.
+          Rs {settings?.shipping.outsideValley}. {settings?.content.product.exchange}
         </p>
       ),
     },
@@ -91,8 +103,14 @@ function ProductView({ product }) {
 
         <div className={styles.info}>
           <nav className={styles.crumbs}>
-            <Link to="/shop">Shop</Link> /{' '}
-            {product.category && <Link to={`/shop?category=${product.category.slug}`}>{product.category.name}</Link>}
+            {product.category ? (
+              <>
+                <Link to={genderInfo(product.category.gender ?? 'women')?.path ?? '/shop'}>{genderInfo(product.category.gender)?.label ?? 'Shop'}</Link> /{' '}
+                <Link to={`${genderInfo(product.category.gender)?.path ?? '/shop'}?category=${product.category.slug}`}>{product.category.name}</Link>
+              </>
+            ) : (
+              <Link to="/shop">Shop</Link>
+            )}
           </nav>
 
           <h1 className={styles.name}>{product.name}</h1>
@@ -100,7 +118,15 @@ function ProductView({ product }) {
 
           <div className={styles.options}>
             <OptionPicker label="Colour" type="color" options={product.colors} value={color} onChange={setColor} />
-            <OptionPicker label="Size" options={product.sizes} value={size} onChange={setSize} />
+            <OptionPicker
+              key={sizeNudge}
+              label="Size"
+              options={product.sizes}
+              value={size}
+              onChange={setSize}
+              invalid={sizeNudge > 0}
+              pickerRef={sizeRef}
+            />
           </div>
 
           <div className={styles.buy}>
@@ -112,11 +138,13 @@ function ProductView({ product }) {
           {error && <p className={styles.error}>{error}</p>}
           {product.stock > 0 && product.stock <= 5 && <p className={styles.low}>Only {product.stock} left — order soon</p>}
 
-          <ul className={styles.perks}>
-            <li>✦ Cash on Delivery available</li>
-            <li>✦ Discreet, unbranded packaging</li>
-            <li>✦ 7-day size exchange</li>
-          </ul>
+          {settings?.content.product.perks.length > 0 && (
+            <ul className={styles.perks}>
+              {settings.content.product.perks.map((perk) => (
+                <li key={perk}>✦ {perk}</li>
+              ))}
+            </ul>
+          )}
 
           <Accordion items={accordion} />
         </div>
@@ -125,7 +153,7 @@ function ProductView({ product }) {
       {product.related.length > 0 && (
         <section className="section">
           <div className="container">
-            <SectionHeading eyebrow="Complete the look" title="You may also like" />
+            <SectionHeading eyebrow={settings?.content.product.relatedEyebrow} title={<RichText text={settings?.content.product.relatedTitle} />} />
             <ProductGrid products={product.related} />
           </div>
         </section>

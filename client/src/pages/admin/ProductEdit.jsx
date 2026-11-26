@@ -23,6 +23,8 @@ const NEW_PRODUCT = {
   sizes: ['S', 'M', 'L', 'XL'],
   colors: [],
   images: [],
+  lookImage: '',
+  lookGarment: '',
   stock: 10,
   featured: false,
   isNew: true,
@@ -92,6 +94,25 @@ function ProductForm({ initial, isNew }) {
 
           <Panel title="Photos">
             <ImageUploader value={product.images} onChange={set('images')} />
+          </Panel>
+
+          <Panel title="Fitting room look (homepage)">
+            <p className={styles.subLabel}>
+              A full-body photo of the model wearing this piece, with the background removed (transparent PNG/WebP).
+              Products with a look appear in the homepage fitting room — Girls or Boys depending on the category.
+            </p>
+            <p className={styles.subLabel}>1 · Model wearing it</p>
+            <ImageUploader
+              value={product.lookImage ? [product.lookImage] : []}
+              max={1}
+              onChange={(urls) => set('lookImage')(urls[0] ?? '')}
+            />
+            <p className={styles.subLabel}>2 · The clothes alone (shown on the side cards)</p>
+            <ImageUploader
+              value={product.lookGarment ? [product.lookGarment] : []}
+              max={1}
+              onChange={(urls) => set('lookGarment')(urls[0] ?? '')}
+            />
           </Panel>
 
           <Panel title="Variants">

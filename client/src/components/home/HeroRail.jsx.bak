@@ -1,0 +1,232 @@
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { api } from '../../api/client';
+import { useFetch } from '../../hooks/useFetch';
+import { useSettings } from '../../context/SettingsContext';
+import Button from '../ui/Button';
+import Price from '../ui/Price';
+import styles from './Hero.module.css';
+
+// the rail: each piece is a real photographed garment, cut out of its studio wall
+const RAIL = [
+  { key: 'ivory', img: '/rail/ribbed-ivory.webp', product: 'ribbed-lounge-set', color: 'Ivory', group: 'lounge' },
+  { key: 'blush', img: '/rail/pajama-blush.webp', product: 'crimson-satin-pajama-set', color: 'Blush', group: 'pajama' },
+  { key: 'dusk', img: '/rail/midnight-dusk.webp', product: 'midnight-button-set', color: 'Dusk Blue', group: 'button' },
+  { key: 'sage', img: '/rail/ribbed-sage.webp', product: 'ribbed-lounge-set', color: 'Sage', group: 'lounge' },
+  { key: 'rose', img: '/rail/pajama-rose.webp', product: 'crimson-satin-pajama-set', color: 'Rose', group: 'pajama' },
+  { key: 'noir', img: '/rail/midnight-noir.webp', product: 'midnight-button-set', color: 'Noir', group: 'button' },
+  { key: 'mocha', img: '/rail/ribbed-mocha.webp', product: 'ribbed-lounge-set', color: 'Mocha', group: 'lounge' },
+  { key: 'wine', img: '/rail/pajama-wine.webp', product: 'crimson-satin-pajama-set', color: 'Wine', group: 'pajama' },
+  { key: 'champ', img: '/rail/midnight-champ.webp', product: 'midnight-button-set', color: 'Champagne', group: 'button' },
+];
+
+const GROUPS = [
+  { key: 'all', label: 'All' },
+  { key: 'button', label: 'Button sets' },
+  { key: 'lounge', label: 'Lounge' },
+  { key: 'pajama', label: 'Pyjamas' },
+];
+
+const LABEL = Object.fromEntries(GROUPS.map((g) => [g.key, g.label]));
+
+/**
+ * Hero — the rail: real photographed pieces hanging in a white studio,
+ * the name in big type above, tabs to switch the edit, and a card on click.
+ * Only this file (and its CSS module) is the hero.
+ */
+export default function Hero() {
+  const { settings } = useSettings();
+  const { data: products } = useFetch(() => api.getProducts({ limit: 60 }), []);
+  const [group, setGroup] = useState('all');
+  const [picked, setPicked] = useState(null);
+  const [narrow, setNarrow] = useState(false);
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const m = window.matchMedia('(max-width: 720px)');
+    const onChange = () => setNarrow(m.matches);
+    onChange();
+    m.addEventListener('change', onChange);
+    return () => m.removeEventListener('change', onChange);
+  }, []);
+
+  useEffect(() => setPicked(null), [group]);
+
+  // the chandelier: dim by default, it comes alive as the pointer reaches the middle of the room
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+    let frame = 0;
+    let target = 0.12;
+    const apply = () => {
+      frame = 0;
+      el.style.setProperty('--lit', target.toFixed(3));
+    };
+    const onMove = (e) => {
+      if (e.pointerType === 'touch') return;
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      const reach = Math.min(window.innerWidth, window.innerHeight) * 0.42;
+      const d = Math.hypot(e.clientX - cx, e.clientY - cy);
+      target = Math.max(0.12, Math.min(1, 1 - (d - reach * 0.35) / (reach * 0.65)));
+      if (!frame) frame = requestAnimationFrame(apply);
+    };
+    const onLeave = () => {
+      target = 0.12;
+      if (!frame) frame = requestAnimationFrame(apply);
+    };
+    window.addEventListener('pointermove', onMove, { passive: true });
+    window.addEventListener('pointerleave', onLeave);
+    if (window.matchMedia('(pointer: coarse)').matches) {
+      target = 0.85;
+      apply();
+    }
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerleave', onLeave);
+    };
+  }, []);
+
+  const visible = useMemo(() => {
+    const list = group === 'all' ? RAIL : RAIL.filter((i) => i.group === group);
+    return narrow ? list.slice(0, 4) : list;
+  }, [group, narrow]);
+
+  const bySlug = useMemo(
+    () => Object.fromEntries((products ?? []).map((p) => [p.slug, p])),
+    [products],
+  );
+
+  const item = visible.find((i) => i.key === picked) ?? null;
+  const product = item ? bySlug[item.product] : null;
+
+  return (
+    <section ref={heroRef} className={styles.hero}>
+      <div className={styles.wall} aria-hidden="true" />
+      <div className={styles.wash} aria-hidden="true" />
+      <div className={styles.floor} aria-hidden="true" />
+
+      <div className={styles.head}>
+        <span className={styles.wordmark}>{settings?.storeNameNepali || 'साँझ'}</span>
+        <span className={styles.roman}>{settings?.storeName || 'Saanjh'}</span>
+      </div>
+
+      {/* the chandelier — dim until you walk into the middle of the room */}
+      <div className={styles.lamp} aria-hidden="true">
+        <span className={styles.halo} />
+        <svg className={styles.chandelier} viewBox="0 0 200 240" fill="none">
+          <defs>
+            <linearGradient id="brass" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#d8b184" />
+              <stop offset="0.55" stopColor="#a37c4c" />
+              <stop offset="1" stopColor="#6d4c2a" />
+            </linearGradient>
+            <radialGradient id="bulbGlow">
+              <stop offset="0" stopColor="#ffe6b8" stopOpacity="0.95" />
+              <stop offset="1" stopColor="#ffca86" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+
+          {/* ceiling rose + rod */}
+          <g className={styles.cord}>
+            <ellipse cx="100" cy="6" rx="15" ry="4.5" fill="#6d4c2a" opacity="0.75" />
+            <rect x="99" y="6" width="2" height="56" fill="url(#brass)" />
+          </g>
+
+          {/* arms */}
+          <g stroke="url(#brass)" strokeWidth="2" strokeLinecap="round">
+            <path d="M100 64 C72 74 46 88 36 112" />
+            <path d="M100 64 C128 74 154 88 164 112" />
+            <path d="M100 64 C86 82 74 100 72 126" />
+            <path d="M100 64 C114 82 126 100 128 126" />
+            <path d="M100 64 C100 88 100 112 100 138" />
+          </g>
+          <circle cx="100" cy="64" r="7.5" fill="url(#brass)" />
+
+          {/* candles */}
+          <g fill="url(#brass)">
+            <rect x="29" y="108" width="13" height="6" rx="2" />
+            <rect x="158" y="108" width="13" height="6" rx="2" />
+            <rect x="65" y="122" width="13" height="6" rx="2" />
+            <rect x="122" y="122" width="13" height="6" rx="2" />
+            <rect x="93" y="134" width="14" height="6" rx="2" />
+          </g>
+
+          {/* bulbs (lit) */}
+          <g className={styles.bulbs}>
+            <circle cx="35.5" cy="105" r="18" fill="url(#bulbGlow)" />
+            <circle cx="164.5" cy="105" r="18" fill="url(#bulbGlow)" />
+            <circle cx="71.5" cy="119" r="18" fill="url(#bulbGlow)" />
+            <circle cx="128.5" cy="119" r="18" fill="url(#bulbGlow)" />
+            <circle cx="100" cy="131" r="18" fill="url(#bulbGlow)" />
+            <g fill="#fff4dc">
+              <circle cx="35.5" cy="105" r="3.6" />
+              <circle cx="164.5" cy="105" r="3.6" />
+              <circle cx="71.5" cy="119" r="3.6" />
+              <circle cx="128.5" cy="119" r="3.6" />
+              <circle cx="100" cy="131" r="3.6" />
+            </g>
+          </g>
+
+          {/* glass drop */}
+          <path d="M100 142 C96 156 96 168 100 178 C104 168 104 156 100 142 Z" fill="#e9dcc9" opacity="0.55" />
+        </svg>
+        <span className={styles.cone} />
+      </div>
+
+      <div className={styles.railLine} aria-hidden="true" />
+
+      <div className={styles.rail}>
+        {visible.map((entry, i) => (
+          <button
+            key={entry.key}
+            type="button"
+            className={`${styles.item} ${picked === entry.key ? styles.itemOn : ''}`}
+            style={{ left: `${6 + ((i + 0.5) * 88) / visible.length}%` }}
+            onClick={() => setPicked(picked === entry.key ? null : entry.key)}
+            aria-label={`${bySlug[entry.product]?.name ?? 'Piece'} in ${entry.color}`}
+          >
+            <img src={entry.img} alt="" draggable={false} />
+          </button>
+        ))}
+      </div>
+
+      {settings?.tagline && !item && <p className={styles.tagline}>{settings.tagline}</p>}
+
+      <div className={styles.tabs} role="tablist" aria-label="Browse the rail">
+        {GROUPS.map((g) => (
+          <button
+            key={g.key}
+            type="button"
+            role="tab"
+            aria-selected={group === g.key}
+            className={group === g.key ? styles.tabOn : ''}
+            onClick={() => setGroup(g.key)}
+          >
+            {g.label}
+          </button>
+        ))}
+      </div>
+
+      {item && product && (
+        <aside className={styles.card}>
+          <button type="button" className={styles.close} onClick={() => setPicked(null)} aria-label="Close">
+            ×
+          </button>
+          <div className={styles.cardImg}>
+            <img src={item.img} alt="" />
+          </div>
+          <p className={`eyebrow ${styles.cardEyebrow}`}>{LABEL[item.group]}</p>
+          <h2 className={styles.cardTitle}>{product.name}</h2>
+          <p className={styles.cardPrice}>
+            <Price price={product.price} comparePrice={product.comparePrice} />
+          </p>
+          <p className={styles.cardMeta}>Shown in {item.color}</p>
+          <Button to={`/product/${product.slug}`} full onClick={() => setPicked(null)}>
+            View product
+          </Button>
+        </aside>
+      )}
+    </section>
+  );
+}

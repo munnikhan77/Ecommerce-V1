@@ -3,6 +3,7 @@ import { api } from '../api/client';
 import { useFetch } from '../hooks/useFetch';
 import { useSettings } from '../context/SettingsContext';
 import ProductGrid from '../components/product/ProductGrid';
+import { categoriesFor, genderInfo } from '../utils/gender';
 import styles from './Shop.module.css';
 
 const SORT_OPTIONS = [
@@ -12,17 +13,22 @@ const SORT_OPTIONS = [
   { value: 'price-desc', label: 'Price: High to Low' },
 ];
 
-export default function Shop() {
+// /shop = everything; /women and /men = that half of the store (gender comes from the route)
+export default function Shop({ gender }) {
   const [params, setParams] = useSearchParams();
-  const { categories } = useSettings();
+  const { categories: allCategories, settings } = useSettings();
+  const categories = categoriesFor(allCategories, gender);
+  const info = genderInfo(gender);
+  const base = info?.path ?? '/shop';
+  const banner = gender ? settings?.content.sections.genderSplit[gender] : null;
   const category = params.get('category') ?? '';
   const sort = params.get('sort') ?? 'featured';
   const q = params.get('q') ?? '';
 
-  const { data: products, loading } = useFetch(() => api.getProducts({ category, sort, q }), [category, sort, q]);
+  const { data: products, loading } = useFetch(() => api.getProducts({ gender, category, sort, q }), [gender, category, sort, q]);
 
   const current = categories.find((c) => c.slug === category);
-  const title = q ? `“${q}”` : current?.name ?? 'Shop All';
+  const title = q ? `“${q}”` : current?.name ?? info?.label ?? 'Shop All';
 
   const setParam = (key, value) => {
     const next = new URLSearchParams(params);
@@ -32,19 +38,29 @@ export default function Shop() {
 
   return (
     <div className={styles.page}>
-      <header className={`container ${styles.head}`}>
-        <p className="eyebrow">{q ? 'Search results' : current?.tagline ?? 'The full collection'}</p>
-        <h1>{title}</h1>
-      </header>
+      {banner ? (
+        <header className={styles.genderHead}>
+          {banner.image && <img src={banner.image} alt="" className={styles.genderImg} />}
+          <div className={`container ${styles.genderText}`}>
+            <p className="eyebrow">{current?.tagline ?? banner.subtitle}</p>
+            <h1>{title}</h1>
+          </div>
+        </header>
+      ) : (
+        <header className={`container ${styles.head}`}>
+          <p className="eyebrow">{q ? 'Search results' : current?.tagline ?? 'The full collection'}</p>
+          <h1>{title}</h1>
+        </header>
+      )}
 
       <div className={styles.toolbar}>
         <div className={`container ${styles.toolbarInner}`}>
           <nav className={styles.tabs} aria-label="Categories">
-            <Link to="/shop" className={!category ? styles.activeTab : ''}>
+            <Link to={base} className={!category ? styles.activeTab : ''}>
               All
             </Link>
             {categories.map((c) => (
-              <Link key={c.id} to={`/shop?category=${c.slug}`} className={category === c.slug ? styles.activeTab : ''}>
+              <Link key={c.id} to={`${base}?category=${c.slug}`} className={category === c.slug ? styles.activeTab : ''}>
                 {c.name}
               </Link>
             ))}

@@ -1,0 +1,462 @@
+/* ==========================================================
+   Hero — "the rail": real photographed pieces on a white wall.
+   Only this file (and Hero.jsx) is the hero.
+   ========================================================== */
+
+.hero {
+  position: relative;
+  height: calc(100svh - 36px);
+  min-height: 620px;
+  overflow: hidden;
+  color: var(--ink);
+  background: #faf7f2;
+  --lit: 0.12;
+}
+
+/* ---------- the room ---------- */
+.wall {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(70% 55% at 50% 8%, #fffdfa 0%, #f9f5ef 55%, #f4ede4 100%);
+}
+
+/* faint ribbed wallpaper, like the reference */
+.wall::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, rgba(120, 88, 66, 0.035) 0 1px, transparent 1px 10px);
+}
+
+.wash {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(52% 44% at 50% 46%, rgba(255, 210, 160, 0.36), rgba(255, 210, 160, 0.1) 55%, transparent 74%);
+  opacity: var(--lit);
+  transition: opacity 0.9s var(--ease);
+  pointer-events: none;
+}
+
+.floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 24%;
+  background: linear-gradient(180deg, rgba(206, 186, 166, 0), rgba(206, 186, 166, 0.22));
+  border-top: 1px solid rgba(120, 88, 66, 0.1);
+}
+
+/* ---------- the name ---------- */
+.head {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: clamp(96px, 13vh, 150px);
+  z-index: 4;
+  text-align: center;
+  pointer-events: none;
+}
+
+.wordmark {
+  display: block;
+  font-family: var(--font-nepali);
+  font-size: clamp(62px, 8.6vw, 132px);
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.roman {
+  display: block;
+  margin-top: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.62em;
+  text-indent: 0.62em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ---------- the chandelier ---------- */
+.lamp {
+  position: absolute;
+  top: -8px;
+  left: 66%;
+  z-index: 5;
+  width: clamp(112px, 11.5vw, 168px);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.chandelier {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  transform-origin: 50% 2%;
+  animation: sway 8s ease-in-out infinite;
+  filter: drop-shadow(0 10px 16px rgba(70, 45, 30, 0.16));
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-0.5deg);
+  }
+  50% {
+    transform: rotate(0.5deg);
+  }
+}
+
+/* warm bloom around the fixture, tied to --lit */
+.halo {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 620px;
+  height: 620px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 219, 170, 0.42), rgba(255, 205, 145, 0.14) 40%, rgba(255, 205, 145, 0) 72%);
+  opacity: calc(0.03 + var(--lit) * 1.15);
+  transition: opacity 0.9s var(--ease);
+}
+
+/* the bulbs themselves */
+.bulbs {
+  opacity: calc(0.08 + var(--lit) * 0.92);
+  transition: opacity 0.7s var(--ease);
+}
+
+/* soft pool of light under the fixture */
+.cone {
+  position: absolute;
+  left: 50%;
+  top: 120%;
+  width: 720px;
+  height: 560px;
+  transform: translateX(-50%);
+  background: radial-gradient(50% 58% at 50% 0%, rgba(255, 214, 160, 0.3), rgba(255, 214, 160, 0.07) 55%, transparent 78%);
+  opacity: calc(var(--lit) * 0.6);
+  transition: opacity 0.9s var(--ease);
+}
+
+/* ---------- the rail ---------- */
+.railLine {
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  top: 47%;
+  height: 2px;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    rgba(43, 34, 32, 0.06),
+    rgba(43, 34, 32, 0.45) 8%,
+    rgba(43, 34, 32, 0.45) 92%,
+    rgba(43, 34, 32, 0.06)
+  );
+}
+
+.railLine::before,
+.railLine::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: 0.45;
+  transform: translateY(-50%);
+}
+
+.railLine::before {
+  left: -3px;
+}
+
+.railLine::after {
+  right: -3px;
+}
+
+.rail {
+  position: absolute;
+  inset: 47% 0 0 0;
+  z-index: 3;
+}
+
+/* ---------- the pieces ---------- */
+.item {
+  position: absolute;
+  top: 0;
+  width: clamp(104px, 10.4vw, 168px);
+  padding: 0;
+  border: 0;
+  background: none;
+  transform: translateX(-50%);
+  transition: left 0.75s var(--ease), transform 0.55s var(--ease), opacity 0.45s var(--ease);
+}
+
+.item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 16px 18px rgba(70, 45, 30, 0.18));
+  transition: transform 0.55s var(--ease), filter 0.55s var(--ease);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.item:hover img,
+.item:focus-visible img,
+.itemOn img {
+  transform: translateY(-10px);
+  filter: drop-shadow(0 26px 26px rgba(70, 45, 30, 0.26));
+}
+
+.item:focus-visible {
+  outline: none;
+}
+
+/* ---------- words at the bottom ---------- */
+.tagline {
+  position: absolute;
+  left: 50%;
+  bottom: calc(clamp(24px, 4vh, 44px) + 58px);
+  transform: translateX(-50%);
+  z-index: 6;
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.tabs {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(24px, 4vh, 44px);
+  z-index: 6;
+  display: flex;
+  gap: 2px;
+  padding: 5px;
+  border-radius: 999px;
+  background: rgba(255, 253, 250, 0.92);
+  border: 1px solid rgba(120, 88, 66, 0.16);
+  box-shadow: 0 14px 34px -22px rgba(60, 35, 28, 0.55);
+  transform: translateX(-50%);
+  backdrop-filter: blur(6px);
+}
+
+.tabs button {
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  transition: background 0.35s var(--ease), color 0.35s var(--ease);
+}
+
+.tabs button:hover {
+  color: var(--ink);
+}
+
+.tabOn {
+  background: var(--ink) !important;
+  color: #fffaf6 !important;
+}
+
+/* ---------- product card ---------- */
+.card {
+  position: absolute;
+  right: clamp(16px, 4vw, 56px);
+  top: 50%;
+  z-index: 8;
+  width: 322px;
+  padding: 22px;
+  background: #fffdfa;
+  border: 1px solid rgba(120, 88, 66, 0.14);
+  box-shadow: 0 34px 70px -34px rgba(60, 35, 28, 0.5);
+  transform: translateY(-50%);
+  animation: cardIn 0.5s var(--ease) both;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translate(18px, -50%);
+  }
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  width: 28px;
+  height: 28px;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--ink-soft);
+}
+
+.close:hover {
+  color: var(--ink);
+}
+
+.cardImg {
+  position: relative;
+  height: 190px;
+  margin-bottom: 14px;
+  background: #f7f1e9;
+}
+
+.cardImg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cardEyebrow {
+  font-size: 10px;
+}
+
+.cardTitle {
+  margin: 6px 0 2px;
+  font-size: 27px;
+  line-height: 1.05;
+}
+
+.cardPrice {
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.cardMeta {
+  margin: 8px 0 16px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+/* ---------- phones ---------- */
+@media (max-width: 720px) {
+  .hero {
+    min-height: 560px;
+  }
+
+  .head {
+    top: 108px;
+  }
+
+  .wordmark {
+    font-size: clamp(54px, 17vw, 78px);
+  }
+
+  .roman {
+    margin-top: 8px;
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    text-indent: 0.5em;
+  }
+
+  .railLine,
+  .rail {
+    top: 43%;
+  }
+
+  .item {
+    width: 27vw;
+    min-width: 96px;
+  }
+
+  .lamp {
+    top: 96px;
+    left: 84%;
+    width: 78px;
+  }
+
+  .cord {
+    display: none;
+  }
+
+  .halo {
+    width: 340px;
+    height: 340px;
+  }
+
+  .cone {
+    width: 340px;
+    height: 340px;
+  }
+
+  .tagline {
+    bottom: calc(18px + 52px);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
+
+  .tabs {
+    bottom: 18px;
+    max-width: calc(100vw - 24px);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tabs button {
+    padding: 8px 13px;
+    font-size: 10px;
+  }
+
+  .card {
+    left: 12px;
+    right: 12px;
+    top: auto;
+    bottom: 82px;
+    width: auto;
+    padding: 16px;
+    transform: none;
+    animation: cardUp 0.45s var(--ease) both;
+  }
+
+  @keyframes cardUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+  }
+
+  .cardImg {
+    height: 120px;
+    margin-bottom: 10px;
+  }
+
+  .cardTitle {
+    font-size: 23px;
+  }
+
+  .cardMeta {
+    margin-bottom: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item,
+  .item img,
+  .card {
+    transition: none;
+    animation: none;
+  }
+}

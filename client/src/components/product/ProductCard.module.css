@@ -27,6 +27,7 @@
 }
 
 .badges {
+  pointer-events: none;
   position: absolute;
   top: 12px;
   left: 12px;
@@ -48,25 +49,63 @@
   color: var(--surface);
 }
 
-.view {
+/* quick add bar — slides up over the photo on hover */
+.quick {
   position: absolute;
   left: 12px;
   right: 12px;
   bottom: 12px;
   padding: 12px;
-  background: rgba(255, 250, 246, 0.92);
+  background: rgba(255, 250, 246, 0.94);
   backdrop-filter: blur(8px);
   text-align: center;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
   transform: translateY(calc(100% + 16px));
   transition: transform 0.6s var(--ease);
 }
 
-.card:hover .view {
+.card:hover .quick,
+.quick:focus-within {
   transform: none;
+}
+
+.quickLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.quickSizes {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.quickSizes button {
+  min-width: 38px;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid var(--line);
+  font-size: 12px;
+  transition: all 0.25s var(--ease);
+}
+
+.quickSizes button:hover {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.quickOne {
+  width: 100%;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 .info {
@@ -93,8 +132,105 @@
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
+/* ---------- ranked (bestsellers) ---------- */
+/* each photo opens upward like a curtain, one card after another */
+.ranked {
+  position: relative;
+}
+
+.ranked .media {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.3s var(--ease);
+}
+
+.ranked .media img {
+  transform: scale(1.25);
+  transition: transform 1.8s var(--ease);
+}
+
+.ranked:global(.is-visible) .media {
+  clip-path: inset(0 0 0 0);
+}
+
+.ranked:global(.is-visible) .media img {
+  transform: none;
+}
+
+.ranked:global(.is-visible) .card:hover .media img {
+  transform: scale(1.04);
+}
+
+.ranked:nth-child(2) .media,
+.ranked:nth-child(2) .rank {
+  transition-delay: 0.15s;
+}
+.ranked:nth-child(3) .media,
+.ranked:nth-child(3) .rank {
+  transition-delay: 0.3s;
+}
+.ranked:nth-child(4) .media,
+.ranked:nth-child(4) .rank {
+  transition-delay: 0.45s;
+}
+
+/* scroll drift: odd cards rise, even cards sink, so the row moves like a wave.
+   --p (0 → 1) is set on the section by ProductSection while you scroll. */
+.ranked {
+  --drift: 70px;
+}
+
+.ranked:nth-child(even) {
+  --drift: -70px;
+}
+
+.ranked .card {
+  transform: translateY(calc((var(--p, 0.5) - 0.5) * var(--drift)));
+  will-change: transform;
+}
+
+/* big outlined number that slides in over the photo's corner */
+.rank {
+  position: absolute;
+  top: -0.42em;
+  right: 10px;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(56px, 6vw, 92px);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--accent-deep);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease), color 0.5s var(--ease);
+  pointer-events: none;
+}
+
+.ranked:global(.is-visible) .rank {
+  opacity: 1;
+  /* numbers drift against their card for a bit of depth */
+  transform: translateY(calc((var(--p, 0.5) - 0.5) * var(--drift) * -1.2));
+  transition: opacity 1s var(--ease), color 0.5s var(--ease);
+}
+
+.card:hover ~ .rank {
+  color: var(--accent-deep);
+}
+
+/* touch screens have no hover — keep a compact quick add visible */
 @media (hover: none) {
-  .view {
+  .quick {
+    position: static;
+    margin-top: 8px;
+    padding: 0;
+    background: none;
+    backdrop-filter: none;
+    transform: none;
+  }
+  .quickLabel {
     display: none;
+  }
+  .quickSizes {
+    justify-content: flex-start;
   }
 }

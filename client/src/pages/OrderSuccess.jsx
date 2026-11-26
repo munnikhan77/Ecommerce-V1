@@ -26,7 +26,10 @@ export default function OrderSuccess() {
       </h1>
       <p className={styles.text}>
         We’ve received your order and will call you on <strong>{order.customer.phone}</strong> to confirm it shortly.
-        {order.paymentMethod !== 'Cash on Delivery' && ` We’ll share ${order.paymentMethod} payment details on that call.`}
+        {order.paymentMethod !== 'Cash on Delivery' &&
+          (order.paymentProof
+            ? ` We’ve got your ${order.paymentMethod} screenshot — we’ll check the payment and confirm your order.`
+            : ` We’ll share ${order.paymentMethod} payment details on that call.`)}
       </p>
 
       <div className={styles.card}>

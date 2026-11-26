@@ -3,6 +3,8 @@
  * later from the admin panel (/admin).
  */
 
+import { DEFAULT_CONTENT, DEFAULT_STORY_EXTRAS } from './contentDefaults.js';
+
 const categories = [
   { id: 'cat-night', name: 'Night Dresses', slug: 'night-dresses', tagline: 'Slip into softness', tone: '#d9b8ad', sortOrder: 1 },
   { id: 'cat-pajama', name: 'Pajama Sets', slug: 'pajama-sets', tagline: 'Lazy mornings, sorted', tone: '#c9c2b4', sortOrder: 2 },
@@ -96,6 +98,7 @@ const products = [
 
 const settings = {
   storeName: 'Saanjh',
+  storeNameNepali: 'साँझ',
   tagline: 'Nightwear & intimates, made for you',
   announcement: 'Free delivery inside Kathmandu Valley on orders above Rs 3,000 ✦ Cash on Delivery available',
   currency: 'Rs',
@@ -105,6 +108,11 @@ const settings = {
   social: { instagram: 'https://instagram.com/', facebook: 'https://facebook.com/', tiktok: 'https://tiktok.com/' },
   shipping: { insideValley: 100, outsideValley: 150, freeAbove: 3000 },
   paymentMethods: ['Cash on Delivery', 'eSewa', 'Khalti'],
+  // QR + account shown at checkout for each online method (set from /admin/settings)
+  paymentDetails: {
+    eSewa: { qr: '', name: '', id: '' },
+    Khalti: { qr: '', name: '', id: '' },
+  },
   heroSlides: [
     {
       id: 'hero-1',
@@ -134,7 +142,9 @@ const settings = {
     title: 'Comfort is the new luxury.',
     body: 'We started with a simple idea: what you wear when no one is watching should feel the most beautiful. Every piece is chosen for its fabric, fit and feel — then packed discreetly and delivered to your door anywhere in Nepal.',
     image: '',
+    ...DEFAULT_STORY_EXTRAS,
   },
+  content: DEFAULT_CONTENT,
   promises: [
     { title: 'Discreet Packaging', text: 'Plain, unbranded boxes. Always.' },
     { title: 'Cash on Delivery', text: 'Pay when it reaches you.' },

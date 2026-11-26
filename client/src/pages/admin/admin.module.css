@@ -186,3 +186,68 @@
     grid-template-columns: 1fr;
   }
 }
+
+.uploadLabel {
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.uploadHint {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+.linkDanger {
+  margin-top: 10px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border-bottom: 1px solid currentColor;
+  transition: color 0.3s;
+}
+
+.linkDanger:hover {
+  color: var(--danger);
+}
+
+/* ---------- online payment check (orders table) ---------- */
+.payment {
+  display: grid;
+  justify-items: start;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.proof img {
+  width: 54px;
+  height: 72px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  transition: transform 0.3s var(--ease);
+}
+
+.proof:hover img {
+  transform: scale(1.06);
+}
+
+.paymentActions {
+  display: flex;
+  gap: 12px;
+}
+
+.paymentActions button {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid currentColor;
+}
+
+.paymentActions button:first-child {
+  color: var(--success);
+}

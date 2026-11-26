@@ -4,3 +4,6 @@ dist
 server/data
 server/uploads/*
 !server/uploads/.gitkeep
+
+# duplicate of source-images/clothing-images
+source-images/*.zip

@@ -1,23 +1,153 @@
 .footer {
-  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 50% at 85% 0%, rgba(138, 98, 83, 0.35), transparent 70%),
+    linear-gradient(180deg, var(--dusk-night), #1a1412);
   color: #d9ccc5;
-  padding-top: clamp(56px, 8vw, 96px);
+  /* extra sky above the columns for the sunset, the moon and the stars */
+  --sky: clamp(120px, 13vw, 190px);
+  padding-top: var(--sky);
   font-size: 14px;
 }
 
+/* ---------- nightfall (--night: 0 = sunset, 1 = night; set from Footer.jsx) ---------- */
+.footer {
+  --night: 1;
+}
+
+/* the sunset sky lying over the night one, fading away */
+.sunset {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(70% 60% at 50% 100%, rgba(255, 214, 160, 0.55), transparent 70%),
+    linear-gradient(180deg, var(--dusk-violet) 0%, var(--dusk-rose) 45%, var(--dusk-sun) 100%);
+  opacity: calc(1 - var(--night));
+  pointer-events: none;
+}
+
+/* the sky strip: anything sinking below its bottom edge disappears, like below the horizon */
+.horizon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: var(--sky);
+  overflow: hidden;
+  pointer-events: none;
+  /* soft horizon: the sun fades out as it sinks instead of being cut by a hard edge */
+  mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+}
+
+/* last light along the horizon */
+.horizon::after {
+  content: '';
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 220, 180, 0.7), transparent);
+  opacity: calc(1 - var(--night));
+}
+
+.sun {
+  --size: clamp(56px, 7vw, 110px);
+  position: absolute;
+  left: 50%;
+  top: calc(var(--sky) - var(--size) * 0.9);
+  width: var(--size);
+  height: var(--size);
+  margin-left: calc(var(--size) / -2);
+  border-radius: 50%;
+  background: radial-gradient(circle at 45% 40%, #fff4dc, var(--dusk-sun) 60%, #e98b6b);
+  box-shadow: 0 0 60px 18px rgba(226, 191, 156, 0.45);
+  /* sinks straight down below the horizon as night falls */
+  transform: translateY(calc(var(--night) * var(--size) * 1.3));
+  opacity: calc(1 - var(--night) * 0.9);
+}
+
+.stars {
+  opacity: calc(var(--night) * 1.4 - 0.4);
+}
+
+/* crescent moon rising from the horizon into the corner */
+.footer {
+  --end: 0;
+  --msize: clamp(40px, 4.5vw, 64px);
+  --mright: clamp(24px, 8vw, 120px);
+}
+
+/* the moon rises from the horizon into the corner, and at the very end of the page
+   (--end 0 → 1) climbs to the middle of the sky, bigger and brighter */
+.moon {
+  position: absolute;
+  top: calc(var(--sky) * 0.22 * (1 - var(--end)) + 8px * var(--end));
+  left: calc((100% - var(--mright) - var(--msize)) * (1 - var(--end)) + (50% - var(--msize) / 2) * var(--end));
+  width: var(--msize);
+  height: var(--msize);
+  border-radius: 50%;
+  box-shadow:
+    inset calc(var(--msize) * -0.25) calc(var(--msize) * 0.11) 0 0 var(--moon),
+    0 0 calc(50px + 40px * var(--end)) calc(6px + 10px * var(--end)) rgba(244, 236, 218, calc(0.12 + 0.18 * var(--end)));
+  transform: translateY(calc((1 - var(--night)) * var(--sky))) scale(calc(1 + 0.35 * var(--end)));
+  transform-origin: 50% 0;
+  opacity: calc(var(--night) * 1.5 - 0.3);
+}
+
+/* "good night" appears under the moon once it's up */
+.goodnight {
+  position: absolute;
+  left: 50%;
+  top: calc(8px + var(--msize) * 1.35 + 14px);
+  z-index: 1;
+  font-family: var(--font-nepali);
+  font-size: clamp(16px, 1.6vw, 22px);
+  letter-spacing: 0.06em;
+  color: var(--moon);
+  white-space: nowrap;
+  opacity: calc(var(--end) * 1.4 - 0.4);
+  transform: translate(-50%, calc((1 - var(--end)) * 12px));
+  text-shadow: 0 0 18px rgba(244, 236, 218, 0.35);
+  pointer-events: none;
+}
+
 .grid {
+  position: relative;
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr repeat(4, 1fr);
   gap: 40px;
   padding-bottom: 56px;
 }
 
 .logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
   font-family: var(--font-display);
   font-size: 40px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #f6ece6;
+}
+
+.logoNepali {
+  font-family: var(--font-nepali);
+  font-size: 72px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  line-height: 1.2;
+  /* a little moonlight on the name */
+  text-shadow: 0 0 24px rgba(244, 236, 218, 0.25);
+}
+
+.logoLatin {
+  margin-top: 4px;
+  font-size: 13px;
+  letter-spacing: 0.55em;
+  opacity: 0.75;
 }
 
 .brand p {
@@ -82,11 +212,130 @@
   color: #8f7f78;
 }
 
+/* the fold-away button and the call/email buttons only exist on phones */
+.toggle,
+.quick {
+  display: none;
+}
+
 @media (max-width: 900px) {
   .grid {
     grid-template-columns: 1fr 1fr;
   }
   .brand {
     grid-column: 1 / -1;
+  }
+}
+
+/* ---------- phones: centred brand, tap-to-open link rows, compact bottom ---------- */
+@media (max-width: 720px) {
+  .footer {
+    --sky: 130px;
+  }
+
+  /* no horizon line on small screens — the sun just sinks out of the sky strip */
+  .horizon::after {
+    display: none;
+  }
+
+  /* stars stay up in the sky, not over the text */
+  .stars {
+    mask-image: linear-gradient(180deg, #000 0, #000 120px, transparent 300px);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-bottom: 28px;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 32px;
+  }
+  .logo {
+    align-items: center;
+  }
+  .logoNepali {
+    font-size: 60px;
+  }
+  .logoLatin {
+    padding-left: 0.55em;
+  }
+  .brand p {
+    font-size: 18px;
+  }
+  .socials {
+    justify-content: center;
+  }
+
+  .col,
+  .contact {
+    border-top: 1px solid rgba(244, 236, 218, 0.1);
+  }
+
+  .grid .col h4 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 6px 0;
+  }
+
+  .toggle {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-right: -12px;
+    color: #f6ece6;
+    transition: transform 0.4s var(--ease);
+  }
+  .open .toggle {
+    transform: rotate(45deg);
+  }
+
+  .col ul {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s var(--ease), padding 0.5s var(--ease);
+  }
+  .open ul {
+    max-height: 420px;
+    padding-bottom: 18px;
+  }
+
+  .contact {
+    padding-top: 20px;
+    text-align: center;
+  }
+  .contact ul {
+    display: none;
+  }
+  .quick {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  .quick a {
+    flex: 1;
+    max-width: 160px;
+    padding: 12px 0;
+    border: 1px solid rgba(244, 236, 218, 0.3);
+    border-radius: 99px;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #f6ece6;
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 84px; /* room for the ↑ button */
   }
 }

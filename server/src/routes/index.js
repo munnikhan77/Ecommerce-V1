@@ -17,6 +17,7 @@ router.get('/products', h(products.listProducts));
 router.get('/products/:slug', h(products.getProduct));
 router.post('/orders', h(orders.createOrder));
 router.get('/orders/track/:orderNumber', h(orders.getOrderByNumber));
+router.post('/payment-proof', upload.proofUploadMiddleware, h(upload.handleProofUpload));
 router.post('/auth/login', h(auth.login));
 
 // ---------- admin only ----------
@@ -35,6 +36,8 @@ router.delete('/admin/categories/:id', h(categories.deleteCategory));
 
 router.get('/admin/orders', h(orders.listOrders));
 router.patch('/admin/orders/:id', h(orders.updateOrderStatus));
+router.delete('/admin/orders/:id', h(orders.deleteOrder));
+router.patch('/admin/orders/:id/payment', h(orders.updatePaymentStatus));
 
 router.post('/admin/upload', upload.uploadMiddleware, h(upload.handleUpload));
 

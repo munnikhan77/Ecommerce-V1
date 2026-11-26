@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Icon from '../ui/Icon';
+import { pauseScroll } from '../../utils/smoothScroll';
 import styles from './Drawer.module.css';
 
 /** Slide-in panel used by the cart and the mobile menu */
@@ -9,14 +10,16 @@ export default function Drawer({ open, onClose, side = 'right', title, footer, c
     const onKey = (e) => e.key === 'Escape' && onClose();
     document.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
+    pauseScroll(true);
     return () => {
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = '';
+      pauseScroll(false);
     };
   }, [open, onClose]);
 
   return (
-    <div className={`${styles.root} ${open ? styles.open : ''}`} aria-hidden={!open}>
+    <div className={`${styles.root} ${open ? styles.open : ''}`} aria-hidden={!open} data-lenis-prevent>
       <div className={styles.backdrop} onClick={onClose} />
       <aside className={`${styles.panel} ${styles[side]}`} role="dialog" aria-modal="true" aria-label={title}>
         <header className={styles.head}>

@@ -2,12 +2,16 @@ import { db } from '../db/store.js';
 import { HttpError } from '../utils/httpError.js';
 import { slugify } from '../utils/slugify.js';
 
+// who a category is for; 'unisex' shows up under both Women and Men
+export const GENDERS = ['women', 'men', 'unisex'];
+export const genderOf = (category) => (GENDERS.includes(category?.gender) ? category.gender : 'women');
+
 // GET /api/categories  — each category also gets its product count
 export function listCategories(_req, res) {
   const products = db.all('products').filter((p) => p.active);
   const categories = [...db.all('categories')]
     .sort((a, b) => a.sortOrder - b.sortOrder)
-    .map((c) => ({ ...c, productCount: products.filter((p) => p.categoryId === c.id).length }));
+    .map((c) => ({ ...c, gender: genderOf(c), productCount: products.filter((p) => p.categoryId === c.id).length }));
   res.json(categories);
 }
 
@@ -19,6 +23,8 @@ function cleanCategoryInput(body) {
     slug: slugify(body.slug || name),
     tagline: body.tagline ?? '',
     image: body.image ?? '',
+    cutout: body.cutout ?? '',
+    gender: GENDERS.includes(body.gender) ? body.gender : 'women',
     tone: body.tone || '#d9c2b8',
     sortOrder: Number(body.sortOrder) || 0,
   };

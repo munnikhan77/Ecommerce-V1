@@ -44,6 +44,11 @@ export const api = {
   getProduct: (slug) => request(`/products/${slug}`),
   createOrder: (order) => request('/orders', { method: 'POST', body: order }),
   trackOrder: (orderNumber) => request(`/orders/track/${orderNumber}`),
+  uploadPaymentProof: (file) => {
+    const form = new FormData();
+    form.append('file', file);
+    return request('/payment-proof', { method: 'POST', body: form, isForm: true });
+  },
 
   // admin
   login: (password) => request('/auth/login', { method: 'POST', body: { password } }),
@@ -61,6 +66,8 @@ export const api = {
   deleteCategory: (id) => request(`/admin/categories/${id}`, { method: 'DELETE' }),
   getOrders: (params) => request(`/admin/orders${query(params)}`),
   updateOrderStatus: (id, status) => request(`/admin/orders/${id}`, { method: 'PATCH', body: { status } }),
+  deleteOrder: (id) => request(`/admin/orders/${id}`, { method: 'DELETE' }),
+  updatePaymentStatus: (id, paymentStatus) => request(`/admin/orders/${id}/payment`, { method: 'PATCH', body: { paymentStatus } }),
   upload: (files) => {
     const form = new FormData();
     [...files].forEach((f) => form.append('files', f));

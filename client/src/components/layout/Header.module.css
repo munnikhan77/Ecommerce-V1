@@ -2,19 +2,22 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(246, 240, 234, 0.92);
-  backdrop-filter: blur(14px);
+  /* solid instead of backdrop blur — blur repaints every scroll frame */
+  background: rgba(246, 240, 234, 0.97);
   border-bottom: 1px solid var(--line);
   transition: background 0.5s var(--ease), color 0.5s var(--ease), border-color 0.5s var(--ease);
 }
 
-/* floats over the hero on the home page */
+/* on the home page the header overlaps the hero instead of pushing it down */
+.floating {
+  margin-bottom: calc(var(--header-h) * -1);
+}
+
+/* see-through while it sits over the hero pages */
 .transparent {
   background: transparent;
-  backdrop-filter: none;
   border-color: transparent;
-  color: #fff;
-  margin-bottom: calc(var(--header-h) * -1);
+  color: var(--ink);
 }
 
 .inner {
@@ -26,19 +29,22 @@
 
 .nav {
   display: flex;
+  align-items: center;
   gap: 28px;
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.nav a {
+.nav > a,
+.navItem > a {
   position: relative;
   padding: 6px 0;
   white-space: nowrap;
 }
 
-.nav a::after {
+.nav > a::after,
+.navItem > a::after {
   content: '';
   position: absolute;
   left: 0;
@@ -51,17 +57,167 @@
   transition: transform 0.5s var(--ease);
 }
 
-.nav a:hover::after {
+.nav > a:hover::after,
+.navItem > a:hover::after {
   transform: scaleX(1);
   transform-origin: left;
 }
 
+/* ---------- Women / Men mega menu ---------- */
+/* underline sits under the text, not at the bottom of the tall link */
+.navItem > a::after {
+  bottom: 24px;
+}
+
+/* the link fills the header's height so the mouse can travel down into the panel */
+.navItem > a {
+  display: flex;
+  align-items: center;
+  height: var(--header-h);
+}
+
+.mega {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background: var(--surface);
+  color: var(--ink);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 30px 60px -30px rgba(43, 34, 32, 0.35);
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+  visibility: hidden;
+  transition: clip-path 0.6s var(--ease), opacity 0.4s var(--ease), visibility 0s 0.6s;
+}
+
+.navItem:hover .mega,
+.navItem:focus-within .mega {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+  visibility: visible;
+  transition: clip-path 0.6s var(--ease), opacity 0.4s var(--ease);
+}
+
+/* after a click inside it: shut, even though the mouse/focus is still on it
+   (more specific than the :hover / :focus-within rules above) */
+.nav .navItem .mega.megaOff {
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+  visibility: hidden;
+  transition: clip-path 0.4s var(--ease), opacity 0.3s var(--ease), visibility 0s 0.4s;
+}
+
+.megaInner {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 48px;
+  padding-top: 32px;
+  padding-bottom: 36px;
+}
+
+.megaLinks {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 15px;
+}
+
+.megaLinks a {
+  width: fit-content;
+  transition: color 0.3s, transform 0.3s var(--ease);
+}
+
+.megaLinks a:hover {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+.megaAll {
+  margin-bottom: 6px;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-style: italic;
+}
+
+.megaCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.megaCard {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.megaCard img {
+  transition: transform 1s var(--ease);
+}
+
+.megaCard:hover img {
+  transform: scale(1.05);
+}
+
+.megaCard span {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #fff;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
+}
+
+/* slide the panel's items in a beat after it opens */
+.navItem:hover .megaLinks,
+.navItem:hover .megaCards {
+  animation: megaIn 0.6s var(--ease) both;
+}
+
+.navItem:hover .megaCards {
+  animation-delay: 0.08s;
+}
+
+@keyframes megaIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
 .logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
   font-family: var(--font-display);
   font-size: 32px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   padding-left: 0.22em;
+}
+
+.logoNepali {
+  font-family: var(--font-nepali);
+  font-size: 42px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  line-height: 1.05;
+  margin-left: -0.22em; /* undo the Latin letter-spacing offset so it centres */
+}
+
+.logoLatin {
+  margin-top: 1px;
+  font-size: 10px;
+  letter-spacing: 0.5em;
+  padding-left: 0.5em;
+  opacity: 0.8;
 }
 
 .actions {
@@ -100,31 +256,6 @@
   display: none;
 }
 
-/* ---------- search drawer ---------- */
-.search {
-  max-height: 0;
-  overflow: hidden;
-  background: var(--surface);
-  color: var(--ink);
-  transition: max-height 0.5s var(--ease);
-}
-
-.searchOpen {
-  max-height: 90px;
-  border-top: 1px solid var(--line);
-}
-
-.search input {
-  width: 100%;
-  height: 72px;
-  border: 0;
-  background: transparent;
-  font-family: var(--font-display);
-  font-size: 26px;
-  font-style: italic;
-  outline: none;
-}
-
 @media (max-width: 1100px) {
   .nav {
     display: none;
@@ -134,5 +265,8 @@
   }
   .logo {
     font-size: 24px;
+  }
+  .logoNepali {
+    font-size: 32px;
   }
 }

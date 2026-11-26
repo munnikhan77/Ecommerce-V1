@@ -1,0 +1,86 @@
+.wrap {
+  position: fixed;
+  right: clamp(14px, 2vw, 28px);
+  bottom: clamp(14px, 2vw, 28px);
+  z-index: 45;
+  display: grid;
+  gap: 10px;
+}
+
+.btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(43, 34, 32, 0.88);
+  color: var(--moon);
+  box-shadow: 0 12px 28px -12px rgba(43, 34, 32, 0.6);
+  opacity: 0;
+  transform: translateY(12px) scale(0.8);
+  pointer-events: none;
+  transition:
+    opacity 0.4s var(--ease),
+    transform 0.4s var(--ease),
+    background 0.3s;
+}
+
+.btn.on {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.btn:hover {
+  background: var(--dusk-night);
+}
+
+.up {
+  transform: rotate(-90deg);
+  transition: transform 0.3s var(--ease);
+}
+
+.down {
+  transform: rotate(90deg);
+  transition: transform 0.3s var(--ease);
+}
+
+.btn:hover .up {
+  transform: rotate(-90deg) translateX(3px);
+}
+
+.btn:hover .down {
+  transform: rotate(90deg) translateX(3px);
+}
+
+/* reading progress around the ↑ button, in sunset colours */
+.ring {
+  position: absolute;
+  inset: 0;
+  rotate: -90deg;
+}
+
+.track {
+  fill: none;
+  stroke: rgba(244, 236, 218, 0.15);
+  stroke-width: 2;
+}
+
+.progress {
+  fill: none;
+  stroke: url(#dusk-ring);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+@media (max-width: 720px) {
+  .btn {
+    width: 42px;
+    height: 42px;
+  }
+  /* phones scroll down fast enough on their own; the ↓ button only covered page controls */
+  .btn:last-child {
+    display: none;
+  }
+}

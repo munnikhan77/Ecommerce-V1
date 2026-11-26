@@ -2,6 +2,7 @@ import { db } from '../db/store.js';
 import { verifyToken } from '../middleware/auth.js';
 import { HttpError } from '../utils/httpError.js';
 import { slugify } from '../utils/slugify.js';
+import { genderOf } from './categoryController.js';
 
 const SORTERS = {
   newest: (a, b) => b.createdAt.localeCompare(a.createdAt),
@@ -10,14 +11,19 @@ const SORTERS = {
   featured: (a, b) => Number(b.featured) - Number(a.featured),
 };
 
-// GET /api/products?category=&q=&sort=&featured=&isNew=&limit=&all=
+// GET /api/products?gender=&category=&q=&sort=&featured=&isNew=&limit=&all=
 export function listProducts(req, res) {
-  const { category, q, sort = 'featured', featured, isNew, limit, all } = req.query;
+  const { gender, category, q, sort = 'featured', featured, isNew, limit, all } = req.query;
   const isAdmin = all && verifyToken(req.headers.authorization?.replace('Bearer ', ''));
 
   let products = db.all('products');
   if (!isAdmin) products = products.filter((p) => p.active);
 
+  // women / men: products whose category is for them (unisex counts for both)
+  if (gender === 'women' || gender === 'men') {
+    const ids = new Set(db.all('categories').filter((c) => [gender, 'unisex'].includes(genderOf(c))).map((c) => c.id));
+    products = products.filter((p) => ids.has(p.categoryId));
+  }
   if (category) {
     const cat = db.find('categories', (c) => c.slug === category);
     products = products.filter((p) => p.categoryId === cat?.id);
@@ -60,6 +66,10 @@ function cleanProductInput(body) {
     sizes: Array.isArray(body.sizes) ? body.sizes : [],
     colors: Array.isArray(body.colors) ? body.colors : [],
     images: Array.isArray(body.images) ? body.images : [],
+    // full-body cutout (transparent PNG/WebP) shown in the homepage fitting room
+    lookImage: typeof body.lookImage === 'string' ? body.lookImage : '',
+    // the clothes alone (no model), shown on the glass cards beside the model
+    lookGarment: typeof body.lookGarment === 'string' ? body.lookGarment : '',
     stock: Number(body.stock) || 0,
     featured: Boolean(body.featured),
     isNew: Boolean(body.isNew),

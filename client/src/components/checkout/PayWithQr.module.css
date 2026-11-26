@@ -1,0 +1,164 @@
+.box {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 28px;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  animation: open 0.5s var(--ease);
+}
+
+@keyframes open {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.qrSide {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.qr {
+  padding: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.qr img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: border-color 0.3s;
+}
+
+.download svg {
+  transform: rotate(90deg);
+}
+
+.download:hover {
+  border-color: var(--ink);
+}
+
+.info {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.amount {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 1;
+}
+
+.account {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 16px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.account dt {
+  color: var(--ink-soft);
+}
+
+.account dd {
+  margin: 0;
+  font-weight: 400;
+}
+
+.copy {
+  margin-left: 10px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid currentColor;
+}
+
+.steps {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.uploadBtn {
+  height: 52px;
+  border: 1px dashed var(--ink-faint);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.uploadBtn:hover:not(:disabled) {
+  border-color: var(--ink);
+  background: var(--bg);
+}
+
+.proof {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--success);
+  background: color-mix(in srgb, var(--success) 8%, transparent);
+}
+
+.proof img {
+  width: 56px;
+  height: 72px;
+  object-fit: cover;
+}
+
+.proof strong {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  color: var(--success);
+}
+
+.change {
+  margin-top: 4px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid currentColor;
+}
+
+.error {
+  color: var(--danger);
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .box {
+    grid-template-columns: 1fr;
+  }
+  .qrSide {
+    max-width: 240px;
+    margin: 0 auto;
+  }
+}

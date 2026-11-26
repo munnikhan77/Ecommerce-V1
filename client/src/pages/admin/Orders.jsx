@@ -10,14 +10,43 @@ import table from '../../components/admin/DataTable.module.css';
 import styles from './admin.module.css';
 
 const STATUSES = ['pending', 'confirmed', 'shipped', 'delivered', 'cancelled'];
+const PAYMENT_LABELS = { awaiting: 'Check payment', verified: 'Paid ✓', rejected: 'Payment rejected' };
 
 export default function Orders() {
   const { price } = useSettings();
   const [filter, setFilter] = useState('');
   const { data: orders, loading, reload } = useFetch(() => api.getOrders({ status: filter }), [filter]);
 
+  const [error, setError] = useState('');
+
   const changeStatus = async (order, status) => {
-    await api.updateOrderStatus(order.id, status);
+    setError('');
+    try {
+      await api.updateOrderStatus(order.id, status);
+    } catch (err) {
+      setError(err.message);
+    }
+    reload();
+  };
+
+  const setPayment = async (order, paymentStatus) => {
+    setError('');
+    try {
+      await api.updatePaymentStatus(order.id, paymentStatus);
+    } catch (err) {
+      setError(err.message);
+    }
+    reload();
+  };
+
+  const remove = async (order) => {
+    if (!window.confirm(`Delete order #${order.orderNumber}? This cannot be undone.`)) return;
+    setError('');
+    try {
+      await api.deleteOrder(order.id);
+    } catch (err) {
+      setError(err.message);
+    }
     reload();
   };
 
@@ -32,6 +61,8 @@ export default function Orders() {
           </button>
         ))}
       </div>
+
+      {error && <p className={styles.error}>{error}</p>}
 
       {loading ? (
         <Loader />
@@ -77,6 +108,31 @@ export default function Orders() {
                   <td>
                     {price(o.total)}
                     <div className={table.muted}>{o.paymentMethod}</div>
+                    {o.paymentStatus && o.paymentStatus !== 'cod' && (
+                      <div className={styles.payment}>
+                        <StatusBadge status={`pay-${o.paymentStatus}`} label={PAYMENT_LABELS[o.paymentStatus]} />
+                        {o.paymentProof ? (
+                          <a href={o.paymentProof} target="_blank" rel="noreferrer" className={styles.proof} title="Open screenshot">
+                            <img src={o.paymentProof} alt="Payment screenshot" />
+                          </a>
+                        ) : (
+                          <span className={table.muted}>No screenshot</span>
+                        )}
+                        {o.paymentRef && <span className={table.muted}>Ref: {o.paymentRef}</span>}
+                        <div className={styles.paymentActions}>
+                          {o.paymentStatus !== 'verified' && (
+                            <button type="button" onClick={() => setPayment(o, 'verified')}>
+                              Verify
+                            </button>
+                          )}
+                          {o.paymentStatus !== 'rejected' && (
+                            <button type="button" onClick={() => setPayment(o, 'rejected')}>
+                              Reject
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </td>
                   <td>
                     <StatusBadge status={o.status} />
@@ -89,6 +145,9 @@ export default function Orders() {
                         ))}
                       </select>
                     </div>
+                    <button type="button" className={styles.linkDanger} onClick={() => remove(o)}>
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}

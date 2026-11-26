@@ -1,0 +1,98 @@
+/* hide the system arrow while the moon cursor is on — but keep the text caret in fields */
+:global(html.dusk-cursor-on),
+:global(html.dusk-cursor-on *) {
+  cursor: none !important;
+}
+
+:global(html.dusk-cursor-on input),
+:global(html.dusk-cursor-on textarea) {
+  cursor: text !important;
+}
+
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+:global(html.dusk-cursor-on) .root {
+  opacity: 1;
+}
+
+/* a crescent: a moon-coloured edge on a transparent disc */
+.moon,
+.glow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.moon {
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  /* the tilt comes from the shadow's direction — a `rotate` here would also rotate the JS translate */
+  box-shadow:
+    inset -4px 2px 0 0 var(--moon),
+    0 0 10px 1px rgba(226, 191, 156, 0.55);
+  /* thin dark edge so the pale moon still shows on the cream pages */
+  filter: drop-shadow(0 0 0.6px rgba(43, 34, 32, 0.9));
+}
+
+/* soft dusk glow that trails behind */
+.glow {
+  width: 38px;
+  height: 38px;
+  margin: -19px 0 0 -19px;
+  border: 1px solid rgba(226, 191, 156, 0.55);
+  background: radial-gradient(circle, rgba(226, 191, 156, 0.22), rgba(138, 98, 83, 0.08) 60%, transparent 70%);
+  transition:
+    width 0.35s var(--ease),
+    height 0.35s var(--ease),
+    margin 0.35s var(--ease),
+    background 0.35s,
+    border-color 0.35s;
+}
+
+/* over something clickable: the glow opens like a rising moon */
+.glow.active {
+  width: 66px;
+  height: 66px;
+  margin: -33px 0 0 -33px;
+  border-color: rgba(244, 236, 218, 0.8);
+  background: radial-gradient(circle, rgba(244, 236, 218, 0.28), rgba(226, 191, 156, 0.14) 55%, transparent 72%);
+}
+
+.glow.pressed {
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+}
+
+/* tiny stars shed by the trail: twinkle, drift down, fade */
+.star {
+  position: fixed;
+  width: var(--size);
+  height: var(--size);
+  margin: calc(var(--size) / -2) 0 0 calc(var(--size) / -2);
+  background: var(--moon);
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  filter: drop-shadow(0 0 3px rgba(226, 191, 156, 0.9));
+  animation: fall 1.1s ease-out forwards;
+}
+
+@keyframes fall {
+  0% {
+    opacity: 0.95;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--drift), 26px) scale(0.3) rotate(90deg);
+  }
+}

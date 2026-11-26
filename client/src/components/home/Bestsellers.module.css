@@ -1,0 +1,405 @@
+.section {
+  background: var(--bg-soft);
+}
+
+/* ---------- Women / Men tabs (underline) ---------- */
+.tabs {
+  display: flex;
+  gap: 28px;
+}
+
+.tabs button {
+  position: relative;
+  padding: 6px 0;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-style: italic;
+  color: var(--ink-faint);
+  transition: color 0.4s var(--ease);
+}
+
+.tabs button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--ink);
+  transform: scaleX(0);
+  transition: transform 0.5s var(--ease);
+}
+
+.tabs .tabOn {
+  color: var(--ink);
+}
+
+.tabs .tabOn::after {
+  transform: scaleX(1);
+}
+
+/* ---------- the feature ---------- */
+.main {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 80px);
+  align-items: center;
+}
+
+/* tall enough to feel big, short enough that the thumbnails stay on screen */
+.photo {
+  position: relative;
+  display: block;
+  height: clamp(380px, calc(100svh - 380px), 600px);
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 40px 80px -45px rgba(43, 34, 32, 0.6);
+  animation: photoIn 1s var(--ease) both;
+}
+
+.photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    opacity 0.8s var(--ease),
+    transform 1.6s var(--ease);
+}
+
+.photoAlt {
+  opacity: 0;
+}
+
+.photo:hover .photoAlt {
+  opacity: 1;
+}
+
+.photo:hover img {
+  transform: scale(1.04);
+}
+
+@keyframes photoIn {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0);
+  }
+}
+
+/* huge outlined number tucked in the photo's corner */
+.bigNum {
+  position: absolute;
+  right: 18px;
+  bottom: -0.18em;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(100px, 12vw, 180px);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 250, 246, 0.9);
+  text-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+/* ---------- details ---------- */
+.info {
+  display: grid;
+  gap: 16px;
+  animation: infoIn 0.9s var(--ease) 0.15s both;
+}
+
+@keyframes infoIn {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+
+.kicker {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.kicker span {
+  margin: 0 6px;
+}
+
+.name {
+  font-size: clamp(40px, 4.4vw, 68px);
+  line-height: 1;
+}
+
+.desc {
+  max-width: 440px;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.row {
+  display: grid;
+  gap: 10px;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.label em {
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--ink-soft);
+}
+
+.label .warn {
+  color: var(--danger);
+}
+
+.swatches {
+  display: flex;
+  gap: 10px;
+}
+
+.swatches button {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--swatch);
+  box-shadow:
+    0 0 0 3px var(--bg-soft),
+    0 0 0 4px var(--line);
+  transition: box-shadow 0.3s;
+}
+
+.swatches .swatchOn {
+  box-shadow:
+    0 0 0 3px var(--bg-soft),
+    0 0 0 4px var(--ink);
+}
+
+.sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sizes button {
+  min-width: 46px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 13px;
+  transition: all 0.3s var(--ease);
+}
+
+.sizes button:hover {
+  border-color: var(--ink);
+}
+
+.sizes .sizeOn {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--surface);
+}
+
+.needSize .sizes button {
+  border-color: var(--danger);
+  animation: shake 0.45s var(--ease);
+}
+
+@keyframes shake {
+  20%,
+  60% {
+    transform: translateX(-5px);
+  }
+  40%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 6px;
+}
+
+.more {
+  padding-bottom: 3px;
+  border-bottom: 1px solid currentColor;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ---------- thumbnails ---------- */
+.thumbs {
+  display: flex;
+  gap: 14px;
+  margin-top: clamp(20px, 3vw, 32px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.thumbs button {
+  position: relative;
+  flex: 0 0 auto;
+  width: 76px;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 4px;
+  opacity: 0.5;
+  outline: 1px solid transparent;
+  outline-offset: 3px;
+  transition:
+    opacity 0.4s var(--ease),
+    outline-color 0.4s,
+    transform 0.4s var(--ease);
+}
+
+.thumbs button:hover {
+  opacity: 0.85;
+  transform: translateY(-3px);
+}
+
+.thumbs .thumbOn {
+  opacity: 1;
+  outline-color: var(--ink);
+}
+
+.thumbs img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbNum {
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+.timer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  animation: timer linear forwards;
+}
+
+@keyframes timer {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 860px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+  .photo {
+    height: auto;
+    aspect-ratio: 4 / 5;
+  }
+  .tabs button {
+    font-size: 22px;
+  }
+  .thumbs button {
+    width: 72px;
+  }
+}
+
+/* phones: the whole feature fits one screen — shorter photo with the name on it, compact picks below */
+@media (max-width: 600px) {
+  .tabs {
+    gap: 18px;
+  }
+  .tabs button {
+    font-size: 19px;
+  }
+  .main {
+    gap: 14px;
+  }
+  .photo {
+    aspect-ratio: auto;
+    height: 40svh;
+    min-height: 300px;
+    touch-action: pan-y;
+  }
+  .bigNum {
+    font-size: 84px;
+    right: 12px;
+  }
+  .info {
+    gap: 10px;
+  }
+  .name {
+    font-size: 30px;
+  }
+  .desc {
+    display: none;
+  }
+  /* colour and size side by side */
+  .picks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+  }
+  .row {
+    gap: 8px;
+  }
+  .swatches button {
+    width: 22px;
+    height: 22px;
+  }
+  .sizes {
+    gap: 6px;
+  }
+  .sizes button {
+    min-width: 38px;
+    height: 34px;
+    padding: 0 8px;
+    font-size: 12px;
+  }
+  .actions {
+    margin-top: 2px;
+    gap: 18px;
+  }
+  .thumbs {
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .thumbs button {
+    width: 52px;
+  }
+  .thumbNum {
+    font-size: 14px;
+    left: 5px;
+    top: 3px;
+  }
+}

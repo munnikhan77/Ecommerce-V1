@@ -1,0 +1,33 @@
+.field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.field span {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--moon);
+  box-shadow: 0 0 6px 1px rgba(244, 236, 218, 0.6);
+  animation: twinkle ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field span {
+    animation: none;
+    opacity: 0.6;
+  }
+}

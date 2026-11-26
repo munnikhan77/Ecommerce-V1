@@ -4,12 +4,14 @@ import { api } from '../api/client';
 import { useCart } from '../context/CartContext';
 import { useSettings } from '../context/SettingsContext';
 import CartItem from '../components/cart/CartItem';
+import PayWithQr from '../components/checkout/PayWithQr';
 import Field, { RadioCard } from '../components/ui/Field';
 import Button from '../components/ui/Button';
 import { EmptyState, Loader } from '../components/ui/Loader';
 import styles from './Checkout.module.css';
 
 const EMPTY_FORM = { name: '', phone: '', email: '', city: '', address: '', note: '' };
+const COD = 'Cash on Delivery';
 
 export default function Checkout() {
   const { items, subtotal, clearCart } = useCart();
@@ -19,6 +21,8 @@ export default function Checkout() {
   const [form, setForm] = useState(EMPTY_FORM);
   const [insideValley, setInsideValley] = useState(true);
   const [chosenPayment, setPaymentMethod] = useState('');
+  const [paymentProof, setPaymentProof] = useState('');
+  const [paymentRef, setPaymentRef] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
 
@@ -41,14 +45,30 @@ export default function Checkout() {
 
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
+  // online methods with a QR set up in /admin/settings are paid right here at checkout
+  const qrDetails = paymentMethod !== COD ? settings.paymentDetails?.[paymentMethod] : null;
+  const payByQr = Boolean(qrDetails?.qr);
+
+  const choosePayment = (method) => {
+    setPaymentMethod(method);
+    setPaymentProof('');
+    setError('');
+  };
+
   const placeOrder = async (e) => {
     e.preventDefault();
+    if (payByQr && !paymentProof) {
+      setError(`Please pay with ${paymentMethod} and upload the screenshot before placing your order.`);
+      return;
+    }
     setSubmitting(true);
     setError('');
     try {
       const order = await api.createOrder({
         customer: { ...form, insideValley },
         paymentMethod,
+        paymentProof,
+        paymentRef,
         items: items.map(({ productId, size, color, quantity }) => ({ productId, size, color, quantity })),
       });
       clearCart();
@@ -90,14 +110,14 @@ export default function Checkout() {
               checked={insideValley}
               onChange={() => setInsideValley(true)}
               title="Inside Kathmandu Valley"
-              text={`${price(valleyFee)} · free above ${price(freeAbove)} · 1–2 days`}
+              text={`${price(valleyFee)} · free above ${price(freeAbove)} · ${settings.content.delivery.valleyDays}`}
             />
             <RadioCard
               name="zone"
               checked={!insideValley}
               onChange={() => setInsideValley(false)}
               title="Outside Valley"
-              text={`${price(outsideFee)} · 3–5 days`}
+              text={`${price(outsideFee)} · ${settings.content.delivery.outsideDays}`}
             />
           </div>
           <div className={styles.row}>
@@ -115,17 +135,36 @@ export default function Checkout() {
                 key={m}
                 name="payment"
                 checked={paymentMethod === m}
-                onChange={() => setPaymentMethod(m)}
+                onChange={() => choosePayment(m)}
                 title={m}
-                text={m === 'Cash on Delivery' ? 'Pay when your parcel arrives' : 'We’ll call to share payment details'}
+                text={
+                  m === COD
+                    ? 'Pay when your parcel arrives'
+                    : settings.paymentDetails?.[m]?.qr
+                      ? 'Scan our QR and pay now'
+                      : 'We’ll call to share payment details'
+                }
               />
             ))}
           </div>
+          {payByQr && (
+            <PayWithQr
+              key={paymentMethod}
+              method={paymentMethod}
+              details={qrDetails}
+              amount={total}
+              price={price}
+              proof={paymentProof}
+              onProof={setPaymentProof}
+              reference={paymentRef}
+              onReference={setPaymentRef}
+            />
+          )}
         </section>
 
         {error && <p className={styles.error}>{error}</p>}
         <Button full loading={submitting} type="submit">
-          Place order · {price(total)}
+          {payByQr ? `I’ve paid · Place order` : `Place order · ${price(total)}`}
         </Button>
       </form>
 

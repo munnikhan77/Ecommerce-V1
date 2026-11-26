@@ -10,6 +10,27 @@
   border-bottom: 1px solid var(--line);
 }
 
+/* Women / Men groups: big title, smaller category links under it */
+.group {
+  display: grid;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.nav .groupTitle {
+  font-size: 36px;
+  font-style: italic;
+  border-bottom: 0;
+}
+
+.nav .sub {
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 6px 0 6px 14px;
+  border-bottom: 0;
+  color: var(--ink-soft);
+}
+
 .contact {
   margin-top: auto;
   display: grid;

@@ -50,3 +50,15 @@
   background: #f6e1de;
   color: var(--danger);
 }
+.pay-awaiting {
+  background: #fbefd9;
+  color: #8a6420;
+}
+.pay-verified {
+  background: #e3efe1;
+  color: #44693f;
+}
+.pay-rejected {
+  background: #f6e1de;
+  color: var(--danger);
+}

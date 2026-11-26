@@ -1,0 +1,294 @@
+.split {
+  position: relative;
+  display: flex;
+  height: calc(100svh - var(--header-h));
+  min-height: 520px;
+  /* dusk blue behind the photos while they open — never brown */
+  background: var(--dusk-night);
+  overflow: hidden;
+}
+
+/* each half; the hovered one grows */
+.side {
+  position: relative;
+  flex: 1 1 0;
+  overflow: hidden;
+  color: #fff;
+  transition: flex-grow 0.9s var(--ease);
+}
+
+.split:hover .side {
+  flex-grow: 0.75;
+}
+
+.split:hover .side:hover {
+  flex-grow: 1.35;
+}
+
+/* photos open like curtains from the middle when the page arrives */
+.media {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 calc(100% * (1 - var(--i))) 0 calc(100% * var(--i)));
+  transition: clip-path 1.4s var(--ease);
+  transition-delay: calc(var(--i) * 0.12s);
+}
+
+.visible .media {
+  clip-path: inset(0 0 0 0);
+}
+
+.media > div,
+.media img {
+  height: 100%;
+}
+
+.media img {
+  object-fit: cover;
+  object-position: 50% 25%;
+  transform: scale(1.12);
+  transition: transform 1.6s var(--ease), filter 0.9s var(--ease);
+}
+
+.visible .media img {
+  transform: scale(1.02);
+}
+
+.side:hover .media img {
+  transform: scale(1.08);
+}
+
+/* the side you're not pointing at dims a little */
+.split:hover .side:not(:hover) .media img {
+  filter: brightness(0.6) saturate(0.8);
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 14, 12, 0.15) 0%, transparent 35%, rgba(20, 14, 12, 0.7) 100%);
+}
+
+.text {
+  position: absolute;
+  left: clamp(24px, 4vw, 64px);
+  right: clamp(24px, 4vw, 64px);
+  bottom: clamp(32px, 7vh, 72px);
+}
+
+.index {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 20px;
+  opacity: 0.75;
+}
+
+.label {
+  margin: 4px 0 10px;
+  font-size: clamp(64px, 9vw, 150px);
+  line-height: 0.9;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: transform 1.2s var(--ease) 0.4s, opacity 1.2s var(--ease) 0.4s;
+}
+
+.visible .label {
+  transform: none;
+  opacity: 1;
+}
+
+.subtitle {
+  max-width: 320px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* "Shop women →" slides up on hover */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid currentColor;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.side:hover .cta,
+.side:focus-visible .cta {
+  opacity: 1;
+  transform: none;
+}
+
+.cta svg {
+  transition: transform 0.4s var(--ease);
+}
+
+.side:hover .cta svg {
+  transform: translateX(6px);
+}
+
+/* small round "or" badge on the seam */
+.divider {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  background: rgba(20, 14, 12, 0.35);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 20px;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.8s var(--ease) 0.9s, opacity 0.4s;
+  pointer-events: none;
+}
+
+.visible .divider {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* once one side is hovered the badge steps aside */
+.split:hover .divider {
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+/* ---------- choosing a side: it fills the screen, then the shop opens ---------- */
+.choosing .side,
+.split.choosing:hover .side {
+  flex-grow: 0.0001;
+  transition: flex-grow 0.75s var(--ease);
+}
+
+.choosing .side.chosen,
+.split.choosing:hover .side.chosen {
+  flex-grow: 1;
+}
+
+.choosing .side:not(.chosen) .text {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.choosing .chosen .media img {
+  transform: scale(1.12);
+  filter: none;
+}
+
+.choosing .chosen .label {
+  transform: scale(1.08);
+  transform-origin: left bottom;
+}
+
+.choosing .divider {
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+/* ---------- phones ---------- */
+@media (max-width: 720px) {
+  .split {
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  /* halves slide in from opposite sides */
+  .media {
+    clip-path: none;
+    transform: translateX(calc((var(--i) * 2 - 1) * 100%));
+    transition: transform 1.3s var(--ease);
+    transition-delay: calc(var(--i) * 0.15s);
+  }
+  .visible .media {
+    transform: none;
+  }
+
+  /* slow zoom in / out while waiting */
+  .visible .media img {
+    animation: drift 10s ease-in-out infinite alternate;
+    animation-delay: calc(var(--i) * -5s);
+  }
+
+  .cta {
+    opacity: 1;
+    transform: none;
+  }
+  .label {
+    font-size: 64px;
+  }
+
+  /* "or" spins in */
+  .divider {
+    transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+    transition: transform 1s var(--ease) 0.9s, opacity 0.4s;
+  }
+  .visible .divider {
+    transform: translate(-50%, -50%) scale(1) rotate(0);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.14);
+  }
+}
+
+/* phones: the halves take turns growing a little, inviting a tap */
+@media (hover: none) {
+  .breathing .side {
+    flex-grow: 0.82;
+  }
+  .breathing .side.lit {
+    flex-grow: 1.25;
+  }
+  .breathing .side:not(.lit) .media img {
+    filter: brightness(0.8);
+  }
+  /* keep the "or" badge on the seam as it moves (1.25 : 0.82 split ≈ 60% / 40%) */
+  .divider {
+    transition: transform 1s var(--ease) 0.9s, opacity 0.4s, top 0.9s var(--ease), left 0.9s var(--ease);
+  }
+  .breathing[data-lit='women'] .divider {
+    top: 60%;
+  }
+  .breathing[data-lit='men'] .divider {
+    top: 40%;
+  }
+  .breathing .lit .cta svg {
+    animation: nudge 1.2s var(--ease) infinite;
+  }
+  .side:active {
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes nudge {
+  50% {
+    transform: translateX(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media,
+  .media img,
+  .label {
+    transition: none;
+    animation: none !important;
+  }
+}

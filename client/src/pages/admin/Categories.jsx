@@ -8,7 +8,7 @@ import Field from '../../components/ui/Field';
 import Button from '../../components/ui/Button';
 import styles from './admin.module.css';
 
-const EMPTY = { name: '', tagline: '', image: '', tone: '#d9c2b8', sortOrder: 10 };
+const EMPTY = { name: '', tagline: '', image: '', cutout: '', gender: 'women', tone: '#d9c2b8', sortOrder: 10 };
 
 export default function Categories() {
   const { categories, reloadCategories } = useSettings();
@@ -77,13 +77,26 @@ function CategoryForm({ initial, onSaved }) {
         <div className={styles.row3}>
           <Field label="Name" name="name" value={cat.name} onChange={onInput} required />
           <Field label="Short tagline" name="tagline" value={cat.tagline} onChange={onInput} />
+          <Field as="select" label="For" name="gender" value={cat.gender ?? 'women'} onChange={onInput}>
+            <option value="women">Women</option>
+            <option value="men">Men</option>
+            <option value="unisex">Both (unisex)</option>
+          </Field>
           <div className={styles.row2}>
             <Field label="Order" type="number" name="sortOrder" value={cat.sortOrder} onChange={onInput} />
             <Field label="Colour" type="color" name="tone" value={cat.tone} onChange={onInput} />
           </div>
         </div>
-        <div style={{ maxWidth: 140 }}>
-          <ImageUploader max={1} value={cat.image ? [cat.image] : []} onChange={(urls) => setCat({ ...cat, image: urls[0] ?? '' })} />
+        <div className={styles.row2}>
+          <div style={{ maxWidth: 140 }}>
+            <p className={styles.uploadLabel}>Background photo</p>
+            <ImageUploader max={1} value={cat.image ? [cat.image] : []} onChange={(urls) => setCat({ ...cat, image: urls[0] ?? '' })} />
+          </div>
+          <div style={{ maxWidth: 220 }}>
+            <p className={styles.uploadLabel}>Pop-out model</p>
+            <ImageUploader max={1} accept="image/png" value={cat.cutout ? [cat.cutout] : []} onChange={(urls) => setCat({ ...cat, cutout: urls[0] ?? '' })} />
+            <p className={styles.uploadHint}>PNG with the background removed — she steps out of the card on the homepage.</p>
+          </div>
         </div>
       </Panel>
     </form>

@@ -15,8 +15,17 @@
   --success: #6f8a6a;
   --danger: #b1544d;
 
+  /* "saanjh" = dusk: the sun going down into night */
+  --dusk-sun: #e2bf9c;
+  --dusk-rose: #c49a85;
+  --dusk-violet: #8a6253;
+  --dusk-night: #2b2220;
+  --moon: #f4ecda;
+  --dusk-gradient: linear-gradient(90deg, var(--dusk-sun), var(--dusk-rose) 35%, var(--dusk-violet) 70%, var(--dusk-night));
+
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Jost', system-ui, sans-serif;
+  --font-nepali: 'Tiro Devanagari Hindi', var(--font-display);
 
   --radius: 2px;
   --radius-lg: 14px;

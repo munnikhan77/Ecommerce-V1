@@ -1,0 +1,268 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+}
+
+/* ---------- moving outlined words behind ---------- */
+.marquee {
+  position: absolute;
+  left: 0;
+  top: 46%;
+  display: flex;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(110px, 15vw, 230px);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--accent) 22%, transparent);
+  animation: marquee 40s linear infinite;
+  pointer-events: none;
+  user-select: none;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.head {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.headRight {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* All / Women / Men */
+.chips {
+  display: flex;
+  gap: 6px;
+}
+
+.chips button {
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: var(--surface);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  transition: all 0.35s var(--ease);
+}
+
+.chips button:hover {
+  border-color: var(--ink);
+}
+
+.chips .chipOn {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--surface);
+}
+
+/* who the piece is for, top-right of each card */
+.tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: rgba(196, 154, 133, 0.92);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.tagMen {
+  background: rgba(59, 63, 74, 0.9);
+}
+
+.head h2 {
+  margin-top: 14px;
+  font-size: clamp(40px, 5vw, 68px);
+}
+
+/* ---------- 3D cover-flow ---------- */
+.stage {
+  position: relative;
+  height: clamp(440px, 52vw, 560px);
+  margin-top: 24px;
+  perspective: 1500px;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.card {
+  --w: clamp(220px, 22vw, 300px);
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  width: var(--w);
+  margin-left: calc(var(--w) / -2);
+  transform-style: preserve-3d;
+  transform:
+    translateX(calc(var(--offset) * var(--w) * 0.78))
+    translateZ(calc(var(--depth) * -170px))
+    rotateY(calc(var(--offset) * -38deg));
+  transition:
+    transform 0.9s var(--ease),
+    opacity 0.6s var(--ease),
+    filter 0.9s var(--ease);
+  filter: brightness(calc(1 - var(--depth) * 0.12)) saturate(calc(1 - var(--depth) * 0.15));
+}
+
+/* before the section is on screen the cards wait folded flat, then fan out */
+.section:not(.visible) .card {
+  transform: translateZ(-500px) rotateY(0deg);
+  opacity: 0 !important;
+}
+
+.media {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 40px 70px -35px rgba(43, 34, 32, 0.55);
+}
+
+.current .media {
+  box-shadow: 0 60px 90px -40px rgba(43, 34, 32, 0.7);
+}
+
+/* a sweep of light across the front card */
+.shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.35) 50%, transparent 65%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.current .shine {
+  animation: shine 3.8s var(--ease) 0.5s infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-120%);
+  }
+  35%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  background: var(--surface);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.current .media img {
+  transform: scale(1.04);
+  transition: transform 6s var(--ease);
+}
+
+/* name + price only on the front card */
+.info {
+  padding-top: 16px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+.current .info {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.35s;
+}
+
+.info h3 {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+/* ---------- arrows + dots ---------- */
+.controls {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 8px;
+}
+
+.controls > button {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  transition: all 0.3s var(--ease);
+}
+
+.controls > button:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--surface);
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 99px;
+  background: var(--line);
+  transition: all 0.4s var(--ease);
+}
+
+.dots .dotOn {
+  width: 26px;
+  background: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .headRight {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .card {
+    --w: 62vw;
+  }
+  /* card photo (3:4) + name and price, nothing more — no empty band before the arrows */
+  .stage {
+    height: calc(62vw * 4 / 3 + 104px);
+    margin-top: 12px;
+  }
+  .controls {
+    margin-top: 0;
+  }
+}
